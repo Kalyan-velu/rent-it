@@ -1,7 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Tailwind v4 source globs */
+@source "../index.html";
+@source "./**/*.{js,jsx,ts,tsx}";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -41,6 +43,17 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-brand: #dab6fc;
+  /* Preserve Tailwind v3 primary shades as v4 tokens */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
