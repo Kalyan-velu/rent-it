@@ -45,3 +45,5 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=40s \
 
 # Start application
 CMD ["pnpm", "start"]
+
+USER nobody

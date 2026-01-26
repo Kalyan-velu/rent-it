@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@repo/ui'],
+  transpilePackages: ['@rent-a-wheel/ui'],
   poweredByHeader: false,
   compress: true,
 }
