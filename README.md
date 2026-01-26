@@ -1,135 +1,178 @@
-# Turborepo starter
+# Rent-a-Wheel Platform
 
-This Turborepo starter is maintained by the Turborepo core team.
+A comprehensive multi-tenant SaaS platform for vehicle rental providers with CRM, subscription management, integrations, itinerary builder, and no-code website builder.
 
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 🏗️ Project Structure
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+rent-a-wheel/
+├── apps/
+│   ├── api/          # Express.js backend API
+│   ├── crm/          # Next.js CRM application for rental providers
+│   └── admin/        # React super admin dashboard
+├── packages/
+│   ├── database/     # Prisma schema and database utilities
+│   ├── auth/         # Authentication utilities (JWT, Passkey, RBAC+ABAC)
+│   ├── ui/           # Shared UI components
+│   ├── eslint-config/
+│   └── typescript-config/
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## 🚀 Tech Stack
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+- **Monorepo**: Turborepo
+- **Backend**: Express.js with TypeScript
+- **CRM Frontend**: Next.js 14+ (App Router)
+- **Super Admin**: React with Vite
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: OAuth + Passkey (WebAuthn) + Email
+- **Access Control**: Hybrid ABAC + RBAC
+- **Payment Gateway**: Cashfree
+- **File Storage**: AWS S3
+- **Email**: AWS SES or Resend
+- **Background Jobs**: Kafka
+- **Monitoring**: Sentry
+- **Rate Limiting**: Express rate-limit
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## 📦 Getting Started
 
-### Develop
+### Prerequisites
 
-To develop all apps and packages, run the following command:
+- Node.js 18+
+- pnpm 9+
+- PostgreSQL 14+
+- Docker (optional, for local services)
 
-```
-cd my-turborepo
+### Installation
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+```bash
+# Install dependencies
+pnpm install
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+# Set up environment variables
+cp apps/api/.env.example apps/api/.env
+# Edit apps/api/.env with your configuration
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+# Generate Prisma client
+pnpm db:generate
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+# Run database migrations
+pnpm db:migrate
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+# Start development servers
+pnpm dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+This will start:
+- API server on `http://localhost:4000`
+- CRM app on `http://localhost:3000`
+- Admin dashboard on `http://localhost:3001`
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## 🛠️ Development
 
+```bash
+# Run all apps in development mode
+pnpm dev
+
+# Build all apps
+pnpm build
+
+# Run tests
+pnpm test
+
+# Lint code
+pnpm lint
+
+# Type checking
+pnpm check-types
+
+# Open Prisma Studio (database GUI)
+pnpm db:studio
 ```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+## 📝 Database Management
+
+```bash
+# Generate Prisma client after schema changes
+pnpm db:generate
+
+# Push schema changes to database (dev only)
+pnpm db:push
+
+# Create and run migrations
+pnpm db:migrate
+
+# Open Prisma Studio
+pnpm db:studio
 ```
 
-## Useful Links
+## 🔐 Authentication
 
-Learn more about the power of Turborepo:
+The platform supports three authentication methods:
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+1. **Email + Password**: Traditional email/password authentication
+2. **OAuth**: Google, GitHub, etc.
+3. **Passkey (WebAuthn)**: Passwordless authentication with biometrics
+
+## 🏢 Multi-Tenancy
+
+The platform uses tenant isolation with:
+- Subdomain-based routing (`provider.rentawheel.com`)
+- Row-level security (tenant_id in all tables)
+- Hybrid RBAC + ABAC access control
+
+## 📊 Subscription Tiers
+
+1. **Basic** - $29/month
+   - 100 customers
+   - 100 forms/submissions
+   - CRM features
+   - Email integration
+
+2. **Professional** - $99/month
+   - 1,000 customers
+   - 1,000 forms/submissions
+   - All Basic features
+   - WhatsApp & Slack integration
+   - Funnel management
+
+3. **Enterprise** - $299/month
+   - Unlimited customers
+   - Unlimited forms/submissions
+   - All Professional features
+   - Website builder
+   - Custom domain support
+   - Priority support
+
+## 📚 Documentation
+
+- [API Documentation](./docs/api.md) (coming soon)
+- [Architecture Guide](./docs/architecture.md) (coming soon)
+- [Contributing Guide](./CONTRIBUTING.md) (coming soon)
+- [AI Agents Guide](./agents.md)
+- [Project Rules](./rules.md)
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Run tests with UI (Vitest)
+pnpm test:ui
+```
+
+## 🚢 Deployment
+
+(Deployment instructions coming soon)
+
+## 📄 License
+
+Proprietary - All rights reserved
+
+---
+
+Built with ❤️ using Turborepo

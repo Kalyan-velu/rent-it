@@ -1,0 +1,7 @@
+# Add Docker-specific files
+.env
+.env.local
+.env.*.local
+
+# Don't ignore .env.docker (template)
+!.env.docker
