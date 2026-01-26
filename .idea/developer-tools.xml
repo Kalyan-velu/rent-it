@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DeveloperToolsToolWindowSettingsV1" lastSelectedContentNodeId="hashing-transformer" pluginVersion="7.1.0">
+    <developerToolsConfigurations>
+      <developerToolConfiguration developerToolId="jwt-encoder-decoder" id="4eadbdb2-f21e-452e-9d17-511bf34ba316" name="Workbench">
+        <properties>
+          <property key="headerText" type="INPUT" value="kotlin.String|{&#13;&#10;  &quot;typ&quot;: &quot;JWT&quot;,&#13;&#10;  &quot;alg&quot;: &quot;HS256&quot;&#13;&#10;}" />
+          <property key="payloadText" type="INPUT" value="kotlin.String|{&#13;&#10;  &quot;jti&quot;: &quot;96492d59-0ad5-4c00-892d-590ad5ac00f3&quot;,&#13;&#10;  &quot;sub&quot;: &quot;0123456789&quot;,&#13;&#10;  &quot;name&quot;: &quot;John Doe&quot;,&#13;&#10;  &quot;iat&quot;: 1681040515&#13;&#10;}" />
+        </properties>
+      </developerToolConfiguration>
+      <developerToolConfiguration developerToolId="hashing-transformer" id="8e12c5a9-9901-4ffd-a0e4-2870e4e5451c" name="Workbench">
+        <properties>
+          <property key="sourceText" type="INPUT" value="kotlin.String|fuckyou" />
+        </properties>
+      </developerToolConfiguration>
+    </developerToolsConfigurations>
+  </component>
+</project>
