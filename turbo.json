@@ -27,12 +27,20 @@
       ]
     },
     "test": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
       "dependsOn": [
         "^build"
       ],
       "cache": true
     },
     "dev": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
       "cache": false,
       "persistent": true
     }

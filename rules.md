@@ -24,7 +24,7 @@ This document outlines the development, security, and architectural rules for th
 - Maintain clear and concise KDoc/comments for complex logic.
 
 ## 🔐 Security Rules
-- **Access Control**: Always check permissions using the RBAC/ABAC system in `@repo/auth`.
+- **Access Control**: Always check permissions using the RBAC/ABAC system in `@rent-a-wheel/auth`.
 - **Data Protection**: Never expose sensitive data (passwords, internal IDs) in API responses.
 - **Input Sanitization**: Use `isomorphic-dompurify` for any user-generated content.
 - **Secrets**: Never commit `.env` files or hardcoded secrets. Use AWS Secrets Manager or similar in production.
