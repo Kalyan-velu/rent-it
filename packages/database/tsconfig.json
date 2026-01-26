@@ -1,0 +1,15 @@
+{
+  "extends": "@rent-a-wheel/typescript-config/base.json",
+  "compilerOptions": {
+    "target": "ES2024",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "types": ["node"]
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

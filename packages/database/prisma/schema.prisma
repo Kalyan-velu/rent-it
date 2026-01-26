@@ -3,24 +3,24 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 // Enums
 enum UserRole {
-  SUPER_ADMIN    // Platform super admin
-  TENANT_ADMIN   // Rental provider admin
-  TENANT_USER    // Rental provider staff
+  SUPER_ADMIN // Platform super admin
+  TENANT_ADMIN // Rental provider admin
+  TENANT_USER // Rental provider staff
 }
 
 enum SubscriptionPlan {
-  BASIC          // 100 customers, 100 forms
-  PROFESSIONAL   // 1000 customers, 1000 forms, integrations
-  ENTERPRISE     // Unlimited, website builder
+  BASIC // 100 customers, 100 forms
+  PROFESSIONAL // 1000 customers, 1000 forms, integrations
+  ENTERPRISE // Unlimited, website builder
 }
 
 enum SubscriptionStatus {
@@ -55,16 +55,16 @@ enum PaymentStatus {
 // Super Admin & Multi-Tenancy
 
 model Tenant {
-  id          String   @id @default(cuid())
-  name        String   // Business name
-  subdomain   String   @unique // e.g., "johnsrentals"
+  id           String  @id @default(cuid())
+  name         String // Business name
+  subdomain    String  @unique // e.g., "johnsrentals"
   customDomain String? @unique // For enterprise plan
-  logoUrl     String?
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  deletedAt   DateTime? // Soft delete
-  
+  logoUrl      String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Soft delete
+
   // Relations
   users        User[]
   subscription Subscription?
@@ -73,38 +73,38 @@ model Tenant {
   bookings     Booking[]
   forms        Form[]
   website      Website?
-  
+
   @@index([subdomain])
   @@map("tenants")
 }
 
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  passwordHash  String?   // Nullable for OAuth/Passkey only users
-  name          String
-  role          UserRole  @default(TENANT_USER)
-  
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String? // Nullable for OAuth/Passkey only users
+  name         String
+  role         UserRole @default(TENANT_USER)
+
   // OAuth fields
-  googleId      String?   @unique
-  githubId      String?   @unique
-  
+  googleId String? @unique
+  githubId String? @unique
+
   // Passkey (WebAuthn) - stores credential IDs
-  passkeys      Json[]    @default([])
-  
+  passkeys Json[] @default([])
+
   // Multi-tenant
-  tenantId      String?
-  tenant        Tenant?   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  
+  tenantId String?
+  tenant   Tenant? @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
   emailVerified DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   deletedAt     DateTime? // Soft delete
-  
+
   // Audit trail
-  lastLoginAt   DateTime?
-  loginCount    Int       @default(0)
-  
+  lastLoginAt DateTime?
+  loginCount  Int       @default(0)
+
   @@index([email])
   @@index([tenantId])
   @@map("users")
@@ -113,52 +113,52 @@ model User {
 // Subscription Management
 
 model Subscription {
-  id              String              @id @default(cuid())
-  plan            SubscriptionPlan
-  status          SubscriptionStatus  @default(TRIALING)
-  
+  id     String             @id @default(cuid())
+  plan   SubscriptionPlan
+  status SubscriptionStatus @default(TRIALING)
+
   // Cashfree payment references
   cashfreeSubscriptionId String? @unique
-  
+
   currentPeriodStart DateTime
   currentPeriodEnd   DateTime
-  cancelAtPeriodEnd  Boolean   @default(false)
-  
+  cancelAtPeriodEnd  Boolean  @default(false)
+
   // Limits based on plan
-  customerLimit   Int       // -1 for unlimited
-  formLimit       Int       // -1 for unlimited
-  
-  tenantId        String    @unique
-  tenant          Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  
-  invoices        Invoice[]
-  
+  customerLimit Int // -1 for unlimited
+  formLimit     Int // -1 for unlimited
+
+  tenantId String @unique
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  invoices Invoice[]
+
   @@index([tenantId])
   @@map("subscriptions")
 }
 
 model Invoice {
-  id             String        @id @default(cuid())
-  amount         Float
-  currency       String        @default("INR")
-  status         PaymentStatus @default(PENDING)
-  
+  id       String        @id @default(cuid())
+  amount   Float
+  currency String        @default("INR")
+  status   PaymentStatus @default(PENDING)
+
   // Cashfree payment details
-  cashfreeOrderId String?     @unique
-  cashfreePaymentId String?   @unique
-  
-  paidAt         DateTime?
-  dueDate        DateTime
-  
+  cashfreeOrderId   String? @unique
+  cashfreePaymentId String? @unique
+
+  paidAt  DateTime?
+  dueDate DateTime
+
   subscriptionId String
   subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
-  
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([subscriptionId])
   @@map("invoices")
 }
@@ -166,31 +166,31 @@ model Invoice {
 // CRM - Customer Management
 
 model Customer {
-  id          String    @id @default(cuid())
-  name        String
-  email       String
-  phone       String
-  address     String?
-  city        String?
-  state       String?
-  country     String?
-  zipCode     String?
-  
+  id      String  @id @default(cuid())
+  name    String
+  email   String
+  phone   String
+  address String?
+  city    String?
+  state   String?
+  country String?
+  zipCode String?
+
   // Lead/Customer metadata
-  leadSource  String?   // e.g., "website", "referral", "whatsapp"
-  leadScore   Int       @default(0)
-  tags        String[]  @default([])
-  notes       String?   @db.Text
-  
-  tenantId    String
-  tenant      Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  deletedAt   DateTime? // Soft delete
-  
-  bookings    Booking[]
-  
+  leadSource String? // e.g., "website", "referral", "whatsapp"
+  leadScore  Int      @default(0)
+  tags       String[] @default([])
+  notes      String?  @db.Text
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Soft delete
+
+  bookings Booking[]
+
   @@index([tenantId])
   @@index([email])
   @@index([phone])
@@ -200,42 +200,42 @@ model Customer {
 // Vehicle Management
 
 model Vehicle {
-  id             String         @id @default(cuid())
-  make           String         // e.g., "Toyota"
-  model          String         // e.g., "Camry"
-  year           Int
-  licensePlate   String
-  vin            String?        // Vehicle Identification Number
-  
-  category       String         // e.g., "SUV", "Sedan", "Luxury"
-  seats          Int
-  transmission   String         // e.g., "Automatic", "Manual"
-  fuelType       String         // e.g., "Petrol", "Diesel", "Electric"
-  
-  dailyRate      Float
-  weeklyRate     Float?
-  monthlyRate    Float?
-  
-  status         VehicleStatus  @default(AVAILABLE)
-  
+  id           String  @id @default(cuid())
+  make         String // e.g., "Toyota"
+  model        String // e.g., "Camry"
+  year         Int
+  licensePlate String
+  vin          String? // Vehicle Identification Number
+
+  category     String // e.g., "SUV", "Sedan", "Luxury"
+  seats        Int
+  transmission String // e.g., "Automatic", "Manual"
+  fuelType     String // e.g., "Petrol", "Diesel", "Electric"
+
+  dailyRate   Float
+  weeklyRate  Float?
+  monthlyRate Float?
+
+  status VehicleStatus @default(AVAILABLE)
+
   // Images (S3 URLs)
-  images         String[]       @default([])
-  
+  images String[] @default([])
+
   // Features
-  features       String[]       @default([]) // e.g., ["GPS", "Bluetooth", "Sunroof"]
-  
-  mileage        Int            @default(0)
+  features String[] @default([]) // e.g., ["GPS", "Bluetooth", "Sunroof"]
+
+  mileage         Int       @default(0)
   lastServiceDate DateTime?
-  
-  tenantId       String
-  tenant         Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  deletedAt      DateTime?      // Soft delete
-  
-  bookings       Booking[]
-  
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Soft delete
+
+  bookings Booking[]
+
   @@index([tenantId])
   @@index([status])
   @@map("vehicles")
@@ -244,43 +244,43 @@ model Vehicle {
 // Booking Management
 
 model Booking {
-  id            String         @id @default(cuid())
-  bookingNumber String         @unique // e.g., "BK-2024-0001"
-  
-  startDate     DateTime
-  endDate       DateTime
-  
-  status        BookingStatus  @default(PENDING)
-  
+  id            String @id @default(cuid())
+  bookingNumber String @unique // e.g., "BK-2024-0001"
+
+  startDate DateTime
+  endDate   DateTime
+
+  status BookingStatus @default(PENDING)
+
   // Pricing
-  dailyRate     Float
-  totalDays     Int
-  subtotal      Float
-  tax           Float          @default(0)
-  discount      Float          @default(0)
-  total         Float
-  
+  dailyRate Float
+  totalDays Int
+  subtotal  Float
+  tax       Float @default(0)
+  discount  Float @default(0)
+  total     Float
+
   // Payment
-  paymentStatus PaymentStatus  @default(PENDING)
-  cashfreeOrderId String?      @unique
-  
+  paymentStatus   PaymentStatus @default(PENDING)
+  cashfreeOrderId String?       @unique
+
   // Add-ons
-  addOns        Json[]         @default([]) // e.g., [{"name": "GPS", "price": 500}]
-  
-  notes         String?        @db.Text
-  
-  customerId    String
-  customer      Customer       @relation(fields: [customerId], references: [id])
-  
-  vehicleId     String
-  vehicle       Vehicle        @relation(fields: [vehicleId], references: [id])
-  
-  tenantId      String
-  tenant        Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  
+  addOns Json[] @default([]) // e.g., [{"name": "GPS", "price": 500}]
+
+  notes String? @db.Text
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([tenantId])
   @@index([bookingNumber])
   @@index([customerId])
@@ -291,40 +291,40 @@ model Booking {
 // Form Builder
 
 model Form {
-  id          String    @id @default(cuid())
+  id          String  @id @default(cuid())
   name        String
   description String?
-  
+
   // Form structure (JSON schema)
-  fields      Json      // Array of field definitions
-  settings    Json      @default("{}") // Form settings (redirects, emails, etc.)
-  
-  isPublished Boolean   @default(false)
-  
-  tenantId    String
-  tenant      Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  deletedAt   DateTime? // Soft delete
-  
+  fields   Json // Array of field definitions
+  settings Json @default("{}") // Form settings (redirects, emails, etc.)
+
+  isPublished Boolean @default(false)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Soft delete
+
   submissions FormSubmission[]
-  
+
   @@index([tenantId])
   @@map("forms")
 }
 
 model FormSubmission {
-  id        String   @id @default(cuid())
-  formId    String
-  form      Form     @relation(fields: [formId], references: [id], onDelete: Cascade)
-  
-  data      Json     // Submitted form data
+  id     String @id @default(cuid())
+  formId String
+  form   Form   @relation(fields: [formId], references: [id], onDelete: Cascade)
+
+  data      Json // Submitted form data
   ipAddress String?
   userAgent String?
-  
+
   createdAt DateTime @default(now())
-  
+
   @@index([formId])
   @@index([createdAt])
   @@map("form_submissions")
@@ -333,22 +333,22 @@ model FormSubmission {
 // Website Builder
 
 model Website {
-  id           String    @id @default(cuid())
-  
+  id String @id @default(cuid())
+
   // Website structure (JSON - pages, components, theme)
-  pages        Json      @default("[]")
-  theme        Json      @default("{}")
-  settings     Json      @default("{}")
-  
-  isPublished  Boolean   @default(false)
-  publishedAt  DateTime?
-  
-  tenantId     String    @unique
-  tenant       Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  
+  pages    Json @default("[]")
+  theme    Json @default("{}")
+  settings Json @default("{}")
+
+  isPublished Boolean   @default(false)
+  publishedAt DateTime?
+
+  tenantId String @unique
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([tenantId])
   @@map("websites")
 }
@@ -356,23 +356,23 @@ model Website {
 // Audit Log for ABAC/RBAC tracking
 
 model AuditLog {
-  id         String   @id @default(cuid())
-  
-  userId     String
-  tenantId   String?
-  
-  action     String   // e.g., "customer.create", "booking.update"
-  resource   String   // e.g., "Customer", "Booking"
+  id String @id @default(cuid())
+
+  userId   String
+  tenantId String?
+
+  action     String // e.g., "customer.create", "booking.update"
+  resource   String // e.g., "Customer", "Booking"
   resourceId String?
-  
+
   // ABAC attributes
-  attributes Json     @default("{}")
-  
-  ipAddress  String?
-  userAgent  String?
-  
-  createdAt  DateTime @default(now())
-  
+  attributes Json @default("{}")
+
+  ipAddress String?
+  userAgent String?
+
+  createdAt DateTime @default(now())
+
   @@index([userId])
   @@index([tenantId])
   @@index([action])
