@@ -1,5 +1,5 @@
-import type { JWTPayload } from '@repo/auth';
-import { verifyToken } from '@repo/auth';
+import type { JWTPayload } from '@rent-a-wheel/auth';
+import { verifyToken } from '@rent-a-wheel/auth';
 import { NextFunction, Request, Response } from 'express';
 
 // Extend Express Request to include user and tenant

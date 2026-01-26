@@ -4,7 +4,7 @@ import {
   hashPassword,
   validatePasswordStrength,
   verifyPassword,
-} from '@repo/auth';
+} from '@rent-a-wheel/auth';
 import { Request, Response, Router } from 'express';
 import { z } from 'zod';
 

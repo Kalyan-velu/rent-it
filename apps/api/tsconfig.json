@@ -1,8 +1,7 @@
 {
-  "extends": "@repo/typescript-config/base.json",
+  "extends": "@rent-a-wheel/typescript-config/base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src",
     "module": "commonjs",
     "target": "ES2020",
     "lib": [
@@ -24,7 +23,7 @@
       "@rent-a-wheel/database": [
         "../../packages/database/src"
       ],
-      "@repo/auth": [
+      "@rent-a-wheel/auth": [
         "../../packages/auth/src"
       ]
     }
