@@ -1,5 +1,5 @@
 import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
+// import eslintConfigPrettier from "eslint-config-prettier";
 import tseslint from "typescript-eslint";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 import pluginReact from "eslint-plugin-react";
@@ -13,7 +13,7 @@ import { config as baseConfig } from "./base.js";
 export const config = [
   ...baseConfig,
   js.configs.recommended,
-  eslintConfigPrettier,
+  // eslintConfigPrettier,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
