@@ -1,0 +1,36 @@
+{
+  "name": "@rent-a-wheel/api-client",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/generated/index.ts",
+  "types": "./src/generated/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/generated/index.ts",
+      "default": "./src/generated/index.ts"
+    },
+    "./endpoints/*": {
+      "types": "./src/generated/endpoints/*/index.ts",
+      "default": "./src/generated/endpoints/*/index.ts"
+    },
+    "./schemas": {
+      "types": "./src/generated/schemas/index.ts",
+      "default": "./src/generated/schemas/index.ts"
+    }
+  },
+  "scripts": {
+    "generate": "orval",
+    "generate:watch": "orval --watch"
+  },
+  "dependencies": {
+    "@rent-a-wheel/api-spec": "workspace:*",
+    "@tanstack/react-query": "^5.80.6",
+    "axios": "^1.9.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "orval": "^8.1.0",
+    "typescript": "^5.9.3"
+  }
+}

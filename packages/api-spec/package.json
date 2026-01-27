@@ -1,0 +1,16 @@
+{
+  "name": "@rent-a-wheel/api-spec",
+  "version": "1.0.0",
+  "private": true,
+  "main": "openapi.yaml",
+  "exports": {
+    ".": "./openapi.yaml",
+    "./openapi.yaml": "./openapi.yaml",
+    "./schemas/*": "./schemas/*.yaml"
+  },
+  "files": [
+    "openapi.yaml",
+    "schemas"
+  ],
+  "type": "module"
+}

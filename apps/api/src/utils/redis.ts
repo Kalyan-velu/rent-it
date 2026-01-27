@@ -40,7 +40,7 @@ export async function withCache<T>(
     // Try to get from cache
     const cached = await client.get(key);
     if (cached) {
-      return JSON.parse(cached) as T;
+      return JSON.parse(cached as string) as T;
     }
 
     // Fetch fresh data
@@ -91,7 +91,7 @@ export const sessionCache = {
   async get<T>(sessionId: string): Promise<T | null> {
     const client = await getRedisClient();
     const data = await client.get(`session:${sessionId}`);
-    return data ? JSON.parse(data) : null;
+    return data ? (JSON.parse(data as string) as T) : null;
   },
 
   async delete(sessionId: string): Promise<void> {

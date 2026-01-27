@@ -12,26 +12,27 @@
   },
   "dependencies": {
     "@rent-a-wheel/database": "workspace:*",
+    "@rent-a-wheel/api-client": "workspace:*",
     "@rent-a-wheel/ui": "workspace:*",
-    "@tailwindcss/postcss": "^4.1.18",
-    "@tanstack/react-query": "^5.90.20",
+    "@tanstack/react-query": "catalog:",
     "@tanstack/react-query-devtools": "^5.91.2",
-    "axios": "^1.13.3",
+    "axios": "catalog:",
     "date-fns": "^4.1.0",
-    "next": "^16.1.4",
-    "postcss": "^8.5.6",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "tailwindcss": "^4.1.18",
-    "zod": "^4.3.6"
+    "next": "^16.1.5",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@rent-a-wheel/eslint-config": "workspace:*",
     "@rent-a-wheel/typescript-config": "workspace:*",
-    "@types/node": "^22.19.7",
-    "@types/react": "^19.2.9",
-    "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.1",
-    "typescript": "^5.9.3"
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "eslint": "catalog:",
+    "typescript": "catalog:",
+    "@tailwindcss/postcss": "catalog:",
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:"
   }
 }
