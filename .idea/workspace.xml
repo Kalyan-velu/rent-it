@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AIAssistantCustomInstructionsStorage">
+    <option name="instructions">
+      <map>
+        <entry key="AIAssistant.VCS.GenerateCommitMessage">
+          <value>
+            <AIAssistantStoredInstruction>
+              <option name="actionId" value="AIAssistant.VCS.GenerateCommitMessage" />
+              <option name="content" value="Avoid overly verbose descriptions or unnecessary details.&#10;use well known professional syntax for commit message. for example:&#10;&lt;change_type&gt;: &lt;commit-header&gt;&#10;&#10;&lt;commit-body&gt;&#10;" />
+            </AIAssistantStoredInstruction>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="AIDiffSettings">
+    <option name="showAIDiff" value="true" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ba53a1a1-28ca-4c71-a664-75ab8505f60f" name="Changes" comment="feat: introduce OpenAPI support and environment enhancements&#10;&#10;- Added OpenAPI documentation using Swagger UI, including YAML spec, configuration, and routes.&#10;- Implemented `orval` for OpenAPI client generation with supporting scripts (`openapi:generate`, `openapi:watch`, `openapi:validate`).&#10;- Refactored JWT handling in `auth` package to utilize dynamic environment-based config.&#10;- Enhanced Docker Compose to remove default secrets for improved security practices.&#10;- Enabled enhanced module resolution in `CRM` app by updating `tsconfig.json` with alias paths.&#10;- Added `.npmrc` for workspace package linking and auto-installation of dependencies.&#10;- Introduced experimental Turbopack filesystem caching in `Next.js` CRM app for development efficiency.">
+      <change afterPath="$PROJECT_DIR$/packages/api-client/src/custom-instance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/api-spec/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/developer-tools.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rent-a-wheel.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tailwindcss.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.npmrc" beforeDir="false" afterPath="$PROJECT_DIR$/.npmrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/admin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/infrastructure/database/repositories/booking.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/infrastructure/database/repositories/booking.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/auth.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/crm/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/crm/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/auth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/auth/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/database/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/database/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/database/prisma.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/database/prisma.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/eslint-config/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/eslint-config/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/openapi/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-spec/openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/openapi/orval.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/orval.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-workspace.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-workspace.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="repository" />
+    </option>
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/borah/Projects/rent-a-wheel" value="38nNKngyMtYAgMH9UwPf3wTI477" />
+      <entry key="_E:/rent-a-wheel" value="38qkygTeR1Z2mRE7clzMqyY6K3a" />
+    </persistenceIdMap>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="100" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+        <option value="package.json" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Kalyan-velu&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Kalyan-velu/get-a-car.git&quot;,
+    &quot;accountId&quot;: &quot;16131886-2d02-4527-b951-20fbbee2571a&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/apps/admin/package.json" />
+    <dismissed value="$PROJECT_DIR$/apps/api/package.json" />
+    <dismissed value="$PROJECT_DIR$/apps/crm/package.json" />
+    <dismissed value="$PROJECT_DIR$/package.json" />
+    <dismissed value="$PROJECT_DIR$/packages/database/package.json" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="38nNKngyMtYAgMH9UwPf3wTI477" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.redis: Compose Deployment.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.nodejs.core.library.configured.version": "22.21.0",
+    "javascript.nodejs.core.library.typings.version": "22.19.7",
+    "javascript.preferred.runtime.type.id": "node",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "E:/rent-a-wheel",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "npm.admin > dev.executor": "Run",
+    "npm.api > dev.executor": "Run",
+    "npm.api-client > generate:watch.executor": "Run",
+    "npm.crm > dev.executor": "Run",
+    "npm.dev.executor": "Run",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "E:\\rent-a-wheel\\apps\\admin\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RecapSpentCounter">
+    <option name="endsOfQuotaMs" value="1770462254903" />
+    <option name="spentUsd" value="0.18587178" />
+  </component>
+  <component name="RecapUselessUpdatesCounter">
+    <option name="suspendCountdown" value="0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\borah\Projects\rent-a-wheel\packages\api-spec" />
+      <recent name="C:\Users\borah\Projects\rent-a-wheel\packages\api-client" />
+      <recent name="C:\Users\borah\Projects\rent-a-wheel\apps\crm\src\app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="admin &gt; dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/apps/admin/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="api &gt; dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/apps/api/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="api-client &gt; generate:watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/api-client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="generate:watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="crm &gt; dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/apps/crm/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.api-client &gt; generate:watch" />
+        <item itemvalue="npm.api &gt; dev" />
+        <item itemvalue="npm.admin &gt; dev" />
+        <item itemvalue="npm.crm &gt; dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.30387.83" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ba53a1a1-28ca-4c71-a664-75ab8505f60f" name="Changes" comment="" />
+      <created>1742448063335</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742448063335</updated>
+      <workItem from="1769431318589" duration="1176000" />
+      <workItem from="1769432580204" duration="3016000" />
+      <workItem from="1769435800690" duration="12506000" />
+      <workItem from="1769492265501" duration="10484000" />
+      <workItem from="1769519376137" duration="11131000" />
+      <workItem from="1769533327489" duration="102000" />
+      <workItem from="1769533532405" duration="371000" />
+      <workItem from="1769534664647" duration="115000" />
+      <workItem from="1769534880578" duration="3046000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: add Playwright, Docker setup, and environment configuration&#10;&#10;- Introduced Playwright testing configuration (`playwright.config.ts`) for E2E testing.&#10;- Added Docker Compose setup (`docker-compose.yml`) for PostgreSQL, Redis, Kafka, API, and front-end applications.&#10;- Included `.idea` project files for development environment management.&#10;- Documented Docker usage and commands in `DOCKER.md`.">
+      <option name="closed" value="true" />
+      <created>1769432101264</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769432101264</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: initialize multi-tenant admin app and authentication module&#10;&#10;- Introduced foundational structure and configuration for the multi-tenant admin app.&#10;- Added base Vite setup, Nginx configuration, and TailwindCSS for front-end styling.&#10;- Implemented React with Zustand for global state and TanStack Query for API calls.&#10;- Created new `auth` package with JWT, password management, and role-based access control (RBAC) logic.&#10;- Integrated passkey support using @simplewebauthn for authentication enhancements.">
+      <option name="closed" value="true" />
+      <created>1769432297644</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1769432297644</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: implement authentication and validation middleware for user management">
+      <option name="closed" value="true" />
+      <created>1769432483049</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1769432483049</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: add initial setup for customer management with API client and hooks">
+      <option name="closed" value="true" />
+      <created>1769432505366</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1769432505366</updated>
+    </task>
+    <task id="LOCAL-00005" summary="chore: remove `web` app and its dependencies&#10;&#10;- Deleted the `apps/web` directory, including package configuration, source files, styles, and static assets.&#10;- Removed related TypeScript, ESLint, and Next.js configuration files.&#10;- Cleared associated fonts, SVGs, and `README.md` specific to the `web` application.&#10;- Updated the monorepo structure to reflect the removal of the `web` application.">
+      <option name="closed" value="true" />
+      <created>1769432773391</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1769432773391</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: add tests, update dependencies, and improve environment setup&#10;&#10;- Added unit tests for components and hooks with Vitest and React Testing Library.&#10;- Implemented E2E tests for authentication and customer management using Playwright.&#10;- Introduced a testing setup file for reusable configurations and mocks.&#10;- Updated PostgreSQL version in Docker Compose to `18-alpine`.&#10;- Added `.idea` configurations for TypeScript settings and Git toolbox preferences.">
+      <option name="closed" value="true" />
+      <created>1769432794689</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1769432794689</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chore: upgrade TailwindCSS to v4 and update dependencies&#10;&#10;- Updated `tailwindcss` and `@tailwindcss/postcss` to `v4.1.18` for improved performance and compatibility.&#10;- Removed unused styles, configuration files, and legacy code related to TailwindCSS v3.&#10;- Added `.idea` configuration updates for enhanced developer experience.&#10;- Adjusted `postcss` configuration and updated `pnpm-lock.yaml` to align with codebase updates.">
+      <option name="closed" value="true" />
+      <created>1769435573689</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1769435573689</updated>
+    </task>
+    <task id="LOCAL-00008" summary="chore: update workspace config, dependencies, and exclusions&#10;&#10;- Added `onlyBuiltDependencies` in `pnpm-workspace.yaml` for better build optimization.&#10;- Updated `.idea` configurations to exclude generated and temporary folders.&#10;- Adjusted Turbo tasks to account for `.env*` inputs in `dev` and `test` workflows.&#10;- Removed `version` property from `docker-compose.yml` for simplification.&#10;- Updated core and dev dependencies in `package.json` for TypeScript and Prettier.&#10;- Fixed security documentation for corrected module paths.">
+      <option name="closed" value="true" />
+      <created>1769454962013</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1769454962013</updated>
+    </task>
+    <task id="LOCAL-00009" summary="chore: update TypeScript config, dependencies, and remove unused styles&#10;&#10;- Switched `tsconfig.json` to use `@rent-a-wheel` configuration.&#10;- Updated dependencies and devDependencies in `package.json` to the latest versions.&#10;- Removed unused `tw-animate-css` import from `index.css`.">
+      <option name="closed" value="true" />
+      <created>1769455019382</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455019382</updated>
+    </task>
+    <task id="LOCAL-00010" summary="chore: migrate internal imports to `@rent-a-wheel` namespace&#10;&#10;- Updated `auth.routes.ts` and `auth.middleware.ts` to use `@rent-a-wheel/auth` instead of `@repo/auth`.&#10;- Adjusted `tsconfig.json` to use `@rent-a-wheel/typescript-config`.&#10;- Updated dependencies and devDependencies in `package.json` to align with the new namespace and latest versions.">
+      <option name="closed" value="true" />
+      <created>1769455057642</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455057642</updated>
+    </task>
+    <task id="LOCAL-00011" summary="chore: migrate CRM app to `@rent-a-wheel` namespace&#10;&#10;- Updated internal imports to use `@rent-a-wheel` namespace in `tsconfig.json`, source files, and config files.&#10;- Updated dependencies and devDependencies in `package.json`, including TailwindCSS, TypeScript, and PostCSS.&#10;- Added `postcss.config.ts` for TailwindCSS v4 configuration and compatibility.&#10;- Removed unused `tw-animate-css` import from `globals.css`.&#10;- Modified Dockerfile to run application as `nobody` for enhanced security.">
+      <option name="closed" value="true" />
+      <created>1769455173268</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455173268</updated>
+    </task>
+    <task id="LOCAL-00012" summary="chore: update dependencies and devDependencies in `auth` package&#10;&#10;- Upgraded core dependencies (`@prisma/client`, `bcrypt`, `jsonwebtoken`, `@simplewebauthn`, `zod`) to latest stable versions.&#10;- Updated devDependencies (`typescript`, `jest`, `@types`) for compatibility and performance improvements.&#10;- Refactored namespace in `package.json` to use `@rent-a-wheel/typescript-config`.">
+      <option name="closed" value="true" />
+      <created>1769455231998</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455231998</updated>
+    </task>
+    <task id="LOCAL-00013" summary="chore: add initial migration files and XML configurations for database setup">
+      <option name="closed" value="true" />
+      <created>1769455343556</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455343556</updated>
+    </task>
+    <task id="LOCAL-00014" summary="chore: update Prisma schema, configuration, and dependencies for improved database integration">
+      <option name="closed" value="true" />
+      <created>1769455405239</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455405239</updated>
+    </task>
+    <task id="LOCAL-00015" summary="chore: update ESLint configuration and package names for consistency">
+      <option name="closed" value="true" />
+      <created>1769455446597</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455446597</updated>
+    </task>
+    <task id="LOCAL-00016" summary="chore: migrate `ui` package to `@rent-a-wheel` namespace&#10;&#10;- Updated package name, internal imports, and configurations to use the `@rent-a-wheel` namespace.&#10;- Adjusted `tsconfig.json` to extend the local TypeScript configuration.&#10;- Updated dependencies and devDependencies to align with the new namespace and latest versions.&#10;- Added `jsx` compiler option in `tsconfig.json` for proper React handling.">
+      <option name="closed" value="true" />
+      <created>1769455479376</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455479376</updated>
+    </task>
+    <task id="LOCAL-00017" summary="chore: migrate `ui` package to `@rent-a-wheel` namespace&#10;&#10;- Updated package name, internal imports, and configurations to use the `@rent-a-wheel` namespace.&#10;- Adjusted `tsconfig.json` to extend the local TypeScript configuration.&#10;- Updated dependencies and devDependencies to align with the new namespace and latest versions.&#10;- Added `jsx` compiler option in `tsconfig.json` for proper React handling.">
+      <option name="closed" value="true" />
+      <created>1769455497853</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455497853</updated>
+    </task>
+    <task id="LOCAL-00018" summary="chore: migrate `ui` package to `@rent-a-wheel` namespace&#10;&#10;- Updated package name, internal imports, and configurations to use the `@rent-a-wheel` namespace.&#10;- Adjusted `tsconfig.json` to extend the local TypeScript configuration.&#10;- Updated dependencies and devDependencies to align with the new namespace and latest versions.&#10;- Added `jsx` compiler option in `tsconfig.json` for proper React handling.">
+      <option name="closed" value="true" />
+      <created>1769455928478</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1769455928478</updated>
+    </task>
+    <task id="LOCAL-00019" summary="refactor: restructure of api codebase">
+      <option name="closed" value="true" />
+      <created>1769503701468</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1769503701468</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: introduce OpenAPI support and environment enhancements&#10;&#10;- Added OpenAPI documentation using Swagger UI, including YAML spec, configuration, and routes.&#10;- Implemented `orval` for OpenAPI client generation with supporting scripts (`openapi:generate`, `openapi:watch`, `openapi:validate`).&#10;- Refactored JWT handling in `auth` package to utilize dynamic environment-based config.&#10;- Enhanced Docker Compose to remove default secrets for improved security practices.&#10;- Enabled enhanced module resolution in `CRM` app by updating `tsconfig.json` with alias paths.&#10;- Added `.npmrc` for workspace package linking and auto-installation of dependencies.&#10;- Introduced experimental Turbopack filesystem caching in `Next.js` CRM app for development efficiency.">
+      <option name="closed" value="true" />
+      <created>1769523481081</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1769523481082</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/packages/auth/src/rbac.js.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/rbac.d.ts" />
+        <option value="$PROJECT_DIR$/packages/auth/src/types.d.ts.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/passkey.js.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/index.d.ts.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/jwt.js" />
+        <option value="$PROJECT_DIR$/packages/auth/src/password.js.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/passkey.js" />
+        <option value="$PROJECT_DIR$/packages/auth/src/password.d.ts" />
+        <option value="$PROJECT_DIR$/packages/auth/src/jwt.js.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/jwt.d.ts.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/types.js.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/password.d.ts.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/index.js.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/index.d.ts" />
+        <option value="$PROJECT_DIR$/packages/auth/src/index.js" />
+        <option value="$PROJECT_DIR$/packages/auth/src/password.js" />
+        <option value="$PROJECT_DIR$/packages/auth/src/rbac.d.ts.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/passkey.d.ts.map" />
+        <option value="$PROJECT_DIR$/packages/auth/src/types.d.ts" />
+        <option value="$PROJECT_DIR$/packages/auth/src/types.js" />
+        <option value="$PROJECT_DIR$/packages/auth/src/passkey.d.ts" />
+        <option value="$PROJECT_DIR$/packages/auth/src/jwt.d.ts" />
+        <option value="$PROJECT_DIR$/packages/auth/src/rbac.js" />
+        <option value="$PROJECT_DIR$/packages/auth/src/config.js" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add Playwright config, Docker setup, and IntelliJ project files" />
+    <MESSAGE value="feat: add Playwright, Docker setup, and environment configuration&#10;&#10;- Introduced Playwright testing configuration (`playwright.config.ts`) for E2E testing.&#10;- Added Docker Compose setup (`docker-compose.yml`) for PostgreSQL, Redis, Kafka, API, and front-end applications.&#10;- Included `.idea` project files for development environment management.&#10;- Documented Docker usage and commands in `DOCKER.md`." />
+    <MESSAGE value="feat: initialize multi-tenant admin app and authentication module&#10;&#10;- Introduced foundational structure and configuration for the multi-tenant admin app.&#10;- Added base Vite setup, Nginx configuration, and TailwindCSS for front-end styling.&#10;- Implemented React with Zustand for global state and TanStack Query for API calls.&#10;- Created new `auth` package with JWT, password management, and role-based access control (RBAC) logic.&#10;- Integrated passkey support using @simplewebauthn for authentication enhancements." />
+    <MESSAGE value="feat: implement authentication and validation middleware for user management" />
+    <MESSAGE value="feat: add initial setup for customer management with API client and hooks" />
+    <MESSAGE value="chore: remove `web` app and its dependencies&#10;&#10;- Deleted the `apps/web` directory, including package configuration, source files, styles, and static assets.&#10;- Removed related TypeScript, ESLint, and Next.js configuration files.&#10;- Cleared associated fonts, SVGs, and `README.md` specific to the `web` application.&#10;- Updated the monorepo structure to reflect the removal of the `web` application." />
+    <MESSAGE value="feat: add tests, update dependencies, and improve environment setup&#10;&#10;- Added unit tests for components and hooks with Vitest and React Testing Library.&#10;- Implemented E2E tests for authentication and customer management using Playwright.&#10;- Introduced a testing setup file for reusable configurations and mocks.&#10;- Updated PostgreSQL version in Docker Compose to `18-alpine`.&#10;- Added `.idea` configurations for TypeScript settings and Git toolbox preferences." />
+    <MESSAGE value="chore: upgrade TailwindCSS to v4 and update dependencies&#10;&#10;- Updated `tailwindcss` and `@tailwindcss/postcss` to `v4.1.18` for improved performance and compatibility.&#10;- Removed unused styles, configuration files, and legacy code related to TailwindCSS v3.&#10;- Added `.idea` configuration updates for enhanced developer experience.&#10;- Adjusted `postcss` configuration and updated `pnpm-lock.yaml` to align with codebase updates." />
+    <MESSAGE value="chore: update workspace config, dependencies, and exclusions&#10;&#10;- Added `onlyBuiltDependencies` in `pnpm-workspace.yaml` for better build optimization.&#10;- Updated `.idea` configurations to exclude generated and temporary folders.&#10;- Adjusted Turbo tasks to account for `.env*` inputs in `dev` and `test` workflows.&#10;- Removed `version` property from `docker-compose.yml` for simplification.&#10;- Updated core and dev dependencies in `package.json` for TypeScript and Prettier.&#10;- Fixed security documentation for corrected module paths." />
+    <MESSAGE value="chore: update TypeScript config, dependencies, and remove unused styles&#10;&#10;- Switched `tsconfig.json` to use `@rent-a-wheel` configuration.&#10;- Updated dependencies and devDependencies in `package.json` to the latest versions.&#10;- Removed unused `tw-animate-css` import from `index.css`." />
+    <MESSAGE value="chore: migrate internal imports to `@rent-a-wheel` namespace&#10;&#10;- Updated `auth.routes.ts` and `auth.middleware.ts` to use `@rent-a-wheel/auth` instead of `@repo/auth`.&#10;- Adjusted `tsconfig.json` to use `@rent-a-wheel/typescript-config`.&#10;- Updated dependencies and devDependencies in `package.json` to align with the new namespace and latest versions." />
+    <MESSAGE value="chore: migrate CRM app to `@rent-a-wheel` namespace&#10;&#10;- Updated internal imports to use `@rent-a-wheel` namespace in `tsconfig.json`, source files, and config files.&#10;- Updated dependencies and devDependencies in `package.json`, including TailwindCSS, TypeScript, and PostCSS.&#10;- Added `postcss.config.ts` for TailwindCSS v4 configuration and compatibility.&#10;- Removed unused `tw-animate-css` import from `globals.css`.&#10;- Modified Dockerfile to run application as `nobody` for enhanced security." />
+    <MESSAGE value="chore: update dependencies and devDependencies in `auth` package&#10;&#10;- Upgraded core dependencies (`@prisma/client`, `bcrypt`, `jsonwebtoken`, `@simplewebauthn`, `zod`) to latest stable versions.&#10;- Updated devDependencies (`typescript`, `jest`, `@types`) for compatibility and performance improvements.&#10;- Refactored namespace in `package.json` to use `@rent-a-wheel/typescript-config`." />
+    <MESSAGE value="chore: add initial migration files and XML configurations for database setup" />
+    <MESSAGE value="chore: update Prisma schema, configuration, and dependencies for improved database integration" />
+    <MESSAGE value="chore: update ESLint configuration and package names for consistency" />
+    <MESSAGE value="chore: migrate `ui` package to `@rent-a-wheel` namespace&#10;&#10;- Updated package name, internal imports, and configurations to use the `@rent-a-wheel` namespace.&#10;- Adjusted `tsconfig.json` to extend the local TypeScript configuration.&#10;- Updated dependencies and devDependencies to align with the new namespace and latest versions.&#10;- Added `jsx` compiler option in `tsconfig.json` for proper React handling." />
+    <MESSAGE value="refactor: restructure of api codebase" />
+    <MESSAGE value="feat: introduce OpenAPI support and environment enhancements&#10;&#10;- Added OpenAPI documentation using Swagger UI, including YAML spec, configuration, and routes.&#10;- Implemented `orval` for OpenAPI client generation with supporting scripts (`openapi:generate`, `openapi:watch`, `openapi:validate`).&#10;- Refactored JWT handling in `auth` package to utilize dynamic environment-based config.&#10;- Enhanced Docker Compose to remove default secrets for improved security practices.&#10;- Enabled enhanced module resolution in `CRM` app by updating `tsconfig.json` with alias paths.&#10;- Added `.npmrc` for workspace package linking and auto-installation of dependencies.&#10;- Introduced experimental Turbopack filesystem caching in `Next.js` CRM app for development efficiency." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: introduce OpenAPI support and environment enhancements&#10;&#10;- Added OpenAPI documentation using Swagger UI, including YAML spec, configuration, and routes.&#10;- Implemented `orval` for OpenAPI client generation with supporting scripts (`openapi:generate`, `openapi:watch`, `openapi:validate`).&#10;- Refactored JWT handling in `auth` package to utilize dynamic environment-based config.&#10;- Enhanced Docker Compose to remove default secrets for improved security practices.&#10;- Enabled enhanced module resolution in `CRM` app by updating `tsconfig.json` with alias paths.&#10;- Added `.npmrc` for workspace package linking and auto-installation of dependencies.&#10;- Introduced experimental Turbopack filesystem caching in `Next.js` CRM app for development efficiency." />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

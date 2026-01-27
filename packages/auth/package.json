@@ -8,19 +8,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@prisma/client": "^7.3.0",
-    "bcrypt": "^6.0.0",
-    "jsonwebtoken": "^9.0.3",
+    "@prisma/client": "catalog:",
+    "bcrypt": "catalog:",
+    "jsonwebtoken": "catalog:",
     "@simplewebauthn/server": "^13.2.2",
     "@simplewebauthn/browser": "^13.2.2",
-    "zod": "^4.3.6"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@rent-a-wheel/typescript-config": "workspace:*",
-    "@types/bcrypt": "^6.0.0",
-    "@types/jsonwebtoken": "^9.0.10",
-    "typescript": "^5.9.3",
-    "jest": "^30.2.0",
-    "@types/jest": "^30.0.0"
+    "@types/bcrypt": "catalog:",
+    "@types/jsonwebtoken": "catalog:",
+    "typescript": "catalog:",
+    "jest": "catalog:",
+    "@types/jest": "catalog:"
   }
 }

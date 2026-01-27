@@ -1,8 +1,8 @@
-import { prisma } from '@rent-a-wheel/database';
-import { Router } from 'express';
-import { UserRepository } from '../../infrastructure/database/repositories';
-import { AuthService } from './auth.service';
-import { createAuthController } from './controllers';
+import {prisma} from '@rent-a-wheel/database';
+import {Router} from 'express';
+import {UserRepository} from '../../infrastructure';
+import {AuthService} from './auth.service';
+import {createAuthController} from './controllers';
 
 /**
  * Auth Module
@@ -16,9 +16,7 @@ export function createAuthModule(): Router {
   const service = new AuthService(userRepo);
 
   // Create controller (no guards - auth handles its own)
-  const controller = createAuthController(service);
-
-  return controller;
+  return createAuthController(service);
 }
 
 export { AuthService } from './auth.service';

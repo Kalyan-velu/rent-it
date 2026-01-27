@@ -11,15 +11,19 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts"
   },
+  "exports": {
+    "./client": "./src/client.ts",
+    ".": "./src/index.ts"
+  },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.3.0",
-    "@prisma/client": "^7.3.0",
-    "dotenv": "^17.2.3"
+    "@prisma/adapter-pg": "catalog:",
+    "@prisma/client": "catalog:",
+    "dotenv": "catalog:"
   },
   "devDependencies": {
     "@rent-a-wheel/typescript-config": "workspace:*",
-    "prisma": "^7.3.0",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "prisma": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   }
 }

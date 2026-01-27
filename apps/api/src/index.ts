@@ -9,7 +9,6 @@ import helmet from 'helmet';
 import path from 'path';
 import swaggerUi from 'swagger-ui-express';
 
-// Import modules
 import {
   createAuthModule,
   createBookingsModule,
@@ -18,20 +17,15 @@ import {
   createVehiclesModule,
 } from './modules';
 
-// Import global exception filter
-import { httpExceptionFilter } from './common/filters';
+import { httpExceptionFilter } from './common';
 
-// Import utilities
 import { getRedisClient } from './utils/redis';
 
-// Load environment variables
 dotenv.config();
 
-// Initialize Express app
 const app: Application = express();
 const PORT = process.env.PORT || 4000;
 
-// Sentry initialization for error tracking (v10+ API)
 if (process.env.SENTRY_DSN) {
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
@@ -40,7 +34,6 @@ if (process.env.SENTRY_DSN) {
   });
 }
 
-// Security middleware
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -71,13 +64,10 @@ app.use(
   })
 );
 
-// Cookie parser (required for reading auth cookies)
 app.use(cookieParser());
 
-// CSRF Protection
 const csrfProtection = csrf({ cookie: true });
 
-// Apply CSRF to all mutation routes (POST, PUT, DELETE)
 app.use('/', (req: Request, res: Response, next: NextFunction) => {
   if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
     return csrfProtection(req as any, res as any, next);
@@ -85,11 +75,10 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Send CSRF token to client
 app.use((req: Request, res: Response, next: NextFunction) => {
   if (req.csrfToken) {
     res.cookie('XSRF-TOKEN', req.csrfToken(), {
-      httpOnly: false, // Client needs to read this
+      httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
     });
@@ -99,8 +88,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Rate limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 100,
   message: 'Too many requests from this IP, please try again later.',
 });
 app.use('/api/', limiter);
@@ -109,11 +98,8 @@ app.use('/api/', limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// =====================
-// OpenAPI Docs (Swagger UI)
-// =====================
 // Serve the spec YAML from the monorepo package at /api/docs/spec/openapi.yaml
-const openapiDir = path.resolve(__dirname, '../../../packages/openapi');
+const openapiDir = path.resolve(__dirname, '../../../packages/api-spec');
 app.get('/api/docs/spec/openapi.yaml', (_req: Request, res: Response) => {
   res.sendFile(path.join(openapiDir, 'openapi.yaml'));
 });

@@ -7,7 +7,7 @@ import {
 import {
   PaginatedResult,
   PaginationDto,
-} from '../../../common/dto/pagination.dto';
+} from '../../../common';
 import { IReadRepository } from './interfaces/read-repository.interface';
 import { IWriteRepository } from './interfaces/write-repository.interface';
 
