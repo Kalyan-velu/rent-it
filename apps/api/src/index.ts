@@ -8,7 +8,6 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import path from 'path';
 import swaggerUi from 'swagger-ui-express';
-
 import {
   createAuthModule,
   createBookingsModule,
@@ -86,7 +85,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,

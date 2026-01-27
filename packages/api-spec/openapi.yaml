@@ -5,6 +5,9 @@ info:
   description: |
     API for managing customers, vehicles, bookings, and tenants for Rent-a-Wheel.
     This is an initial seed of the specification focusing on Customers.
+tags:
+  - name: Customers
+    description: Customer management operations
 servers:
   - url: http://localhost:4000
     description: Local development server
@@ -13,6 +16,8 @@ security:
 paths:
   /api/customers:
     get:
+      tags:
+        - Customers
       summary: List customers
       operationId: listCustomers
       parameters:
@@ -37,6 +42,8 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     post:
+      tags:
+        - Customers
       summary: Create customer
       operationId: createCustomer
       security:
@@ -67,6 +74,8 @@ paths:
         schema:
           type: string
     get:
+      tags:
+        - Customers
       summary: Get customer by id
       operationId: getCustomer
       responses:
@@ -79,6 +88,8 @@ paths:
         '404':
           $ref: '#/components/responses/NotFoundError'
     put:
+      tags:
+        - Customers
       summary: Update customer by id
       operationId: updateCustomer
       security:
@@ -102,6 +113,8 @@ paths:
         '404':
           $ref: '#/components/responses/NotFoundError'
     delete:
+      tags:
+        - Customers
       summary: Delete customer by id
       operationId: deleteCustomer
       security:

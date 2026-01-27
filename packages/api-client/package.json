@@ -9,6 +9,14 @@
     ".": {
       "types": "./src/generated/index.ts",
       "import": "./src/generated/index.ts"
+    },
+    "./schemas/*": {
+      "types": "./src/generated/schemas/**/*.ts",
+      "import": "./src/generated/schemas/**/*.ts"
+    },
+    "./zod": {
+      "types": "./src/generated/endpoints/**/*.zod.ts",
+      "import": "./src/generated/endpoints/**/*.zod.ts"
     }
   },
   "scripts": {
@@ -17,11 +25,12 @@
   },
   "dependencies": {
     "@rent-a-wheel/api-spec": "workspace:*",
-    "@tanstack/react-query": "catalog:",
-    "axios": "catalog:"
+    "@tanstack/react-query": "^5.80.6",
+    "axios": "^1.9.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "orval": "catalog:",
-    "typescript": "catalog:"
+    "orval": "^8.1.0",
+    "typescript": "^5.9.3"
   }
 }

@@ -63,9 +63,6 @@ catalogs:
     jsonwebtoken:
       specifier: ^9.0.3
       version: 9.0.3
-    orval:
-      specifier: ^8.1.0
-      version: 8.1.0
     postcss:
       specifier: ^8.5.6
       version: 8.5.6
@@ -414,17 +411,20 @@ importers:
         specifier: workspace:*
         version: link:../api-spec
       '@tanstack/react-query':
-        specifier: 'catalog:'
+        specifier: ^5.80.6
         version: 5.90.20(react@19.2.4)
       axios:
-        specifier: 'catalog:'
+        specifier: ^1.9.0
         version: 1.13.3
+      zod:
+        specifier: ^3.23.8
+        version: 3.25.76
     devDependencies:
       orval:
-        specifier: 'catalog:'
+        specifier: ^8.1.0
         version: 8.1.0(typescript@5.9.3)
       typescript:
-        specifier: 'catalog:'
+        specifier: ^5.9.3
         version: 5.9.3
 
   packages/api-spec: {}
@@ -6751,6 +6751,9 @@ packages:
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
 
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
@@ -10960,8 +10963,8 @@ snapshots:
       '@babel/parser': 7.28.6
       eslint: 9.39.2(jiti@2.6.1)
       hermes-parser: 0.25.1
-      zod: 4.3.6
-      zod-validation-error: 4.0.2(zod@4.3.6)
+      zod: 3.25.76
+      zod-validation-error: 4.0.2(zod@3.25.76)
     transitivePeerDependencies:
       - supports-color
 
@@ -14229,9 +14232,11 @@ snapshots:
       grammex: 3.1.12
       graphmatch: 1.1.0
 
-  zod-validation-error@4.0.2(zod@4.3.6):
+  zod-validation-error@4.0.2(zod@3.25.76):
     dependencies:
-      zod: 4.3.6
+      zod: 3.25.76
+
+  zod@3.25.76: {}
 
   zod@4.3.6: {}
 
