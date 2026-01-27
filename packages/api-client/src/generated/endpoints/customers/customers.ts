@@ -85,8 +85,6 @@ export const listCustomers = async (params?: ListCustomersParams, options?: Requ
   {      
     ...options,
     method: 'GET'
-    
-    
   }
 );}
 
