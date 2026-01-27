@@ -8,15 +8,15 @@
   "exports": {
     ".": {
       "types": "./src/generated/index.ts",
-      "import": "./src/generated/index.ts"
+      "default": "./src/generated/index.ts"
     },
-    "./schemas/*": {
-      "types": "./src/generated/schemas/**/*.ts",
-      "import": "./src/generated/schemas/**/*.ts"
+    "./endpoints/*": {
+      "types": "./src/generated/endpoints/*/index.ts",
+      "default": "./src/generated/endpoints/*/index.ts"
     },
-    "./zod": {
-      "types": "./src/generated/endpoints/**/*.zod.ts",
-      "import": "./src/generated/endpoints/**/*.zod.ts"
+    "./schemas": {
+      "types": "./src/generated/schemas/index.ts",
+      "default": "./src/generated/schemas/index.ts"
     }
   },
   "scripts": {

@@ -1,0 +1,9 @@
+GET http://localhost:4000/api/customers?page=1
+User-Agent: IntelliJ HTTP Client/WebStorm 2025.3.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-01-28T013903.401.json
+
+###
+

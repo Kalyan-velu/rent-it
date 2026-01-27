@@ -1,7 +1,7 @@
 import { defineConfig } from 'orval';
 
 export default defineConfig({
-  // HTTP client generation with React Query
+  // React Query hooks
   api: {
     input: {
       target: '../api-spec/openapi.yaml',
@@ -11,9 +11,9 @@ export default defineConfig({
       client: 'react-query',
       target: './src/generated/endpoints',
       schemas: './src/generated/schemas',
-      mock: false,
+      mock: true,
       clean: true,
-      indexFiles: true,
+      indexFiles: true, // Creates index.ts in each tag folder
       override: {
         mutator: {
           path: './src/custom-instance.ts',
@@ -22,7 +22,8 @@ export default defineConfig({
       },
     },
   },
-  // Zod schema generation
+  
+  // Zod schemas
   apiZod: {
     input: {
       target: '../api-spec/openapi.yaml',
@@ -32,8 +33,8 @@ export default defineConfig({
       client: 'zod',
       target: './src/generated/endpoints',
       fileExtension: '.zod.ts',
-      clean: false,
-      indexFiles: true,
+      clean: false, // Don't clean since api output runs first
+      indexFiles: false, // api output already creates index files
     },
   },
 });

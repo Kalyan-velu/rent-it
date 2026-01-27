@@ -13,7 +13,7 @@ export function CustomersList() {
   
   return (
     <ul>
-      {data?.data.customers.map((customer) => (
+      {data?.data?.customers.map((customer) => (
         <li key={customer.id}>{customer.name}</li>
       ))}
     </ul>
@@ -27,7 +27,7 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
   
-  return <div>{data?.data.name}</div>;
+  return <div>{data?.data?.name}</div>;
 }
 
 type Props = Omit<ImageProps, "src"> & {
@@ -50,7 +50,6 @@ const ThemeImage = (props: Props) => {
 export default function Home() {
   return (<div>
       <CustomersList />
-      <CustomerDetail customerId="1" />
     </div>
   );
 }
