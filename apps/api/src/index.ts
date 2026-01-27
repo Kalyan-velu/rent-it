@@ -6,6 +6,8 @@ import dotenv from 'dotenv';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
+import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 
 // Import modules
 import {
@@ -106,6 +108,24 @@ app.use('/api/', limiter);
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// =====================
+// OpenAPI Docs (Swagger UI)
+// =====================
+// Serve the spec YAML from the monorepo package at /api/docs/spec/openapi.yaml
+const openapiDir = path.resolve(__dirname, '../../../packages/openapi');
+app.get('/api/docs/spec/openapi.yaml', (_req: Request, res: Response) => {
+  res.sendFile(path.join(openapiDir, 'openapi.yaml'));
+});
+
+// Mount Swagger UI at /api/docs
+app.use(
+  '/api/docs',
+  swaggerUi.serve,
+  swaggerUi.setup(undefined, {
+    swaggerUrl: '/api/docs/spec/openapi.yaml',
+  })
+);
 
 // Health check endpoint
 app.get('/health', (_req: Request, res: Response) => {

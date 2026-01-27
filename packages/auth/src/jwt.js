@@ -7,16 +7,17 @@ exports.generateToken = generateToken;
 exports.verifyToken = verifyToken;
 exports.decodeToken = decodeToken;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
+const config_1 = require("./config");
 function generateToken(payload) {
-    return jsonwebtoken_1.default.sign(payload, JWT_SECRET, {
-        expiresIn: JWT_EXPIRES_IN,
+    const { jwtSecret, jwtExpiresIn } = (0, config_1.loadAuthConfig)();
+    return jsonwebtoken_1.default.sign(payload, jwtSecret, {
+        expiresIn: jwtExpiresIn,
     });
 }
 function verifyToken(token) {
+    const { jwtSecret } = (0, config_1.loadAuthConfig)();
     try {
-        return jsonwebtoken_1.default.verify(token, JWT_SECRET);
+        return jsonwebtoken_1.default.verify(token, jwtSecret);
     }
     catch (error) {
         throw new Error('Invalid or expired token');
