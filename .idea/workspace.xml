@@ -21,17 +21,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba53a1a1-28ca-4c71-a664-75ab8505f60f" name="Changes" comment="chore: align dependencies, configurations, and module structure with monorepo standards&#10;&#10;- Updated `package.json` across packages to adopt `catalog:` protocol for shared dependencies, improving consistency and simplifying updates.&#10;- Introduced a new `@rent-a-wheel/api-spec` package to centralize OpenAPI specification management.&#10;- Refactored `api-client` configuration to utilize the new OpenAPI setup with improved client generation and custom Axios instance.&#10;- Updated `.npmrc` and `pnpm-workspace.yaml` to enhance dependency resolution and workspace protocols.&#10;- Consolidated shared dependencies and tooling in `pnpm` catalogs for monorepo-wide configuration management.&#10;- Improved module exports in various packages for better TypeScript integration and project structure alignment.">
-      <change afterPath="$PROJECT_DIR$/packages/api-client/src/generated/index.ts" afterDir="false" />
+    <list default="true" id="ba53a1a1-28ca-4c71-a664-75ab8505f60f" name="Changes" comment="chore: remove `pnpm-lock.yaml` to align with dependency management changes&#10;&#10;- Deleted `pnpm-lock.yaml` to reset and regenerate dependency lock for improved consistency and alignment with workspace protocols.">
+      <change beforePath="$PROJECT_DIR$/.idea/swagger-settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/swagger-settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/crm/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/crm/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/crm/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/crm/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/crm/src/providers/query-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/crm/src/providers/query-provider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/api-client/orval.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/orval.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/api-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/api-spec/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-spec/openapi.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/endpoints/customers/customers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/endpoints/customers/customers.zod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/badRequestErrorResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customerCreateInput.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customerUpdateInput.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customersResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/error.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/listCustomersParams.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/notFoundErrorResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/pagination.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/unauthorizedErrorResponse.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +88,12 @@
     &quot;accountId&quot;: &quot;16131886-2d02-4527-b951-20fbbee2571a&quot;
   }
 }</component>
+  <component name="HttpClientEndpointsTabState">
+    <option name="cachedRequestData" value="&lt;CachedHttpClientTabRequests&gt;&#10;  &lt;entry key=&quot;1d752fdf70ba556a45f23bfb3f4bdc20df4b470b&quot; value=&quot;###&amp;#10;GET http://localhost:4000/api/customers?&amp;#10;    page=1&quot; /&gt;&#10;&lt;/CachedHttpClientTabRequests&gt;" />
+  </component>
+  <component name="HttpClientOnboardingState"><![CDATA[{
+  "isOnboardingCommentShown": true
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -141,9 +157,10 @@
     "npm.api-client > generate:watch.executor": "Run",
     "npm.crm > dev.executor": "Run",
     "npm.dev.executor": "Run",
-    "settings.editor.selected.configurable": "junie.application.models",
+    "settings.editor.selected.configurable": "swagger",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "E:\\rent-a-wheel\\node_modules\\typescript\\lib",
+    "typescript.add.unambiguous.imports.on.the.fly": "true",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -264,7 +281,7 @@
       <workItem from="1769533327489" duration="102000" />
       <workItem from="1769533532405" duration="371000" />
       <workItem from="1769534664647" duration="115000" />
-      <workItem from="1769534880578" duration="8665000" />
+      <workItem from="1769534880578" duration="10825000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add Playwright, Docker setup, and environment configuration&#10;&#10;- Introduced Playwright testing configuration (`playwright.config.ts`) for E2E testing.&#10;- Added Docker Compose setup (`docker-compose.yml`) for PostgreSQL, Redis, Kafka, API, and front-end applications.&#10;- Included `.idea` project files for development environment management.&#10;- Documented Docker usage and commands in `DOCKER.md`.">
       <option name="closed" value="true" />
@@ -442,7 +459,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769538201525</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="chore: remove `pnpm-lock.yaml` to align with dependency management changes&#10;&#10;- Deleted `pnpm-lock.yaml` to reset and regenerate dependency lock for improved consistency and alignment with workspace protocols.">
+      <option name="closed" value="true" />
+      <created>1769543837248</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1769543837248</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +523,8 @@
     <MESSAGE value="refactor: restructure of api codebase" />
     <MESSAGE value="feat: introduce OpenAPI support and environment enhancements&#10;&#10;- Added OpenAPI documentation using Swagger UI, including YAML spec, configuration, and routes.&#10;- Implemented `orval` for OpenAPI client generation with supporting scripts (`openapi:generate`, `openapi:watch`, `openapi:validate`).&#10;- Refactored JWT handling in `auth` package to utilize dynamic environment-based config.&#10;- Enhanced Docker Compose to remove default secrets for improved security practices.&#10;- Enabled enhanced module resolution in `CRM` app by updating `tsconfig.json` with alias paths.&#10;- Added `.npmrc` for workspace package linking and auto-installation of dependencies.&#10;- Introduced experimental Turbopack filesystem caching in `Next.js` CRM app for development efficiency." />
     <MESSAGE value="chore: align dependencies, configurations, and module structure with monorepo standards&#10;&#10;- Updated `package.json` across packages to adopt `catalog:` protocol for shared dependencies, improving consistency and simplifying updates.&#10;- Introduced a new `@rent-a-wheel/api-spec` package to centralize OpenAPI specification management.&#10;- Refactored `api-client` configuration to utilize the new OpenAPI setup with improved client generation and custom Axios instance.&#10;- Updated `.npmrc` and `pnpm-workspace.yaml` to enhance dependency resolution and workspace protocols.&#10;- Consolidated shared dependencies and tooling in `pnpm` catalogs for monorepo-wide configuration management.&#10;- Improved module exports in various packages for better TypeScript integration and project structure alignment." />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: align dependencies, configurations, and module structure with monorepo standards&#10;&#10;- Updated `package.json` across packages to adopt `catalog:` protocol for shared dependencies, improving consistency and simplifying updates.&#10;- Introduced a new `@rent-a-wheel/api-spec` package to centralize OpenAPI specification management.&#10;- Refactored `api-client` configuration to utilize the new OpenAPI setup with improved client generation and custom Axios instance.&#10;- Updated `.npmrc` and `pnpm-workspace.yaml` to enhance dependency resolution and workspace protocols.&#10;- Consolidated shared dependencies and tooling in `pnpm` catalogs for monorepo-wide configuration management.&#10;- Improved module exports in various packages for better TypeScript integration and project structure alignment." />
+    <MESSAGE value="chore: remove `pnpm-lock.yaml` to align with dependency management changes&#10;&#10;- Deleted `pnpm-lock.yaml` to reset and regenerate dependency lock for improved consistency and alignment with workspace protocols." />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: remove `pnpm-lock.yaml` to align with dependency management changes&#10;&#10;- Deleted `pnpm-lock.yaml` to reset and regenerate dependency lock for improved consistency and alignment with workspace protocols." />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
