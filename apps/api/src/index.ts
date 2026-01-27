@@ -1,14 +1,25 @@
 import * as Sentry from '@sentry/node';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import csrf from 'csurf';
 import dotenv from 'dotenv';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
-import authRoutes from './routes/auth.routes';
-import bookingsRoutes from './routes/bookings.routes';
-import customersRoutes from './routes/customers.routes';
-import tenantsRoutes from './routes/tenants.routes';
-import vehiclesRoutes from './routes/vehicles.routes';
+
+// Import modules
+import {
+  createAuthModule,
+  createBookingsModule,
+  createCustomersModule,
+  createTenantsModule,
+  createVehiclesModule,
+} from './modules';
+
+// Import global exception filter
+import { httpExceptionFilter } from './common/filters';
+
+// Import utilities
 import { getRedisClient } from './utils/redis';
 
 // Load environment variables
@@ -18,15 +29,13 @@ dotenv.config();
 const app: Application = express();
 const PORT = process.env.PORT || 4000;
 
-// Sentry initialization for error tracking
+// Sentry initialization for error tracking (v10+ API)
 if (process.env.SENTRY_DSN) {
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
     environment: process.env.NODE_ENV || 'development',
     tracesSampleRate: 1.0,
   });
-  app.use(Sentry.Handlers.requestHandler());
-  app.use(Sentry.Handlers.tracingHandler());
 }
 
 // Security middleware
@@ -61,25 +70,23 @@ app.use(
 );
 
 // Cookie parser (required for reading auth cookies)
-import cookieParser from 'cookie-parser';
 app.use(cookieParser());
 
 // CSRF Protection
-import csrf from 'csurf';
 const csrfProtection = csrf({ cookie: true });
 
 // Apply CSRF to all mutation routes (POST, PUT, DELETE)
-app.use('/', (req, res, next) => {
+app.use('/', (req: Request, res: Response, next: NextFunction) => {
   if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
-    return csrfProtection(req, res, next);
+    return csrfProtection(req as any, res as any, next);
   }
   next();
 });
 
 // Send CSRF token to client
-app.use((_req, res, next) => {
-  if (_req.csrfToken) {
-    res.cookie('XSRF-TOKEN', _req.csrfToken(), {
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (req.csrfToken) {
+    res.cookie('XSRF-TOKEN', req.csrfToken(), {
       httpOnly: false, // Client needs to read this
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
@@ -101,7 +108,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
@@ -109,15 +116,17 @@ app.get('/health', (req: Request, res: Response) => {
   });
 });
 
-// Mount routes
-app.use('/api/auth', authRoutes);
-app.use('/api/customers', customersRoutes);
-app.use('/api/vehicles', vehiclesRoutes);
-app.use('/api/bookings', bookingsRoutes);
-app.use('/api/tenants', tenantsRoutes);
+// =====================
+// Mount Modules
+// =====================
+app.use('/api/auth', createAuthModule());
+app.use('/api/customers', createCustomersModule());
+app.use('/api/vehicles', createVehiclesModule());
+app.use('/api/bookings', createBookingsModule());
+app.use('/api/tenants', createTenantsModule());
 
 // API root
-app.get('/api', (req: Request, res: Response) => {
+app.get('/api', (_req: Request, res: Response) => {
   res.json({
     message: 'Rent-a-Wheel API',
     version: '1.0.0',
@@ -139,21 +148,16 @@ app.use((_req: Request, res: Response) => {
   });
 });
 
-// Sentry error handler (must be before other error handlers)
-if (process.env.SENTRY_DSN) {
-  app.use(Sentry.Handlers.errorHandler());
-}
+// Global exception filter (replaces manual error handling)
+// Also reports errors to Sentry if configured
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  // Report to Sentry
+  if (process.env.SENTRY_DSN) {
+    Sentry.captureException(err);
+  }
 
-// Global error handler
-app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
-  console.error('Error:', err);
-  res.status(500).json({
-    error: 'Internal Server Error',
-    message:
-      process.env.NODE_ENV === 'development'
-        ? err.message
-        : 'Something went wrong',
-  });
+  // Pass to our exception filter
+  httpExceptionFilter(err, req, res, next);
 });
 
 // Start server
