@@ -7,11 +7,12 @@ export default defineConfig({
       target: '../api-spec/openapi.yaml',
     },
     output: {
-      mode: 'tags-split',
+      tsconfig: './tsconfig.json',
+      mode: 'tags',
       client: 'react-query',
       target: './src/generated/endpoints',
       schemas: './src/generated/schemas',
-      mock: true,
+      mock: false,
       clean: true,
       indexFiles: true, // Creates index.ts in each tag folder
       override: {
@@ -22,19 +23,20 @@ export default defineConfig({
       },
     },
   },
-  
+
   // Zod schemas
   apiZod: {
     input: {
       target: '../api-spec/openapi.yaml',
     },
     output: {
-      mode: 'tags-split',
+      tsconfig: './tsconfig.json',
+      mode: 'tags',
       client: 'zod',
       target: './src/generated/endpoints',
       fileExtension: '.zod.ts',
       clean: false, // Don't clean since api output runs first
-      indexFiles: false, // api output already creates index files
+      indexFiles:true
     },
   },
 });

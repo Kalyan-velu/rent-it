@@ -10,6 +10,7 @@ This is an initial seed of the specification focusing on Customers.
 import * as zod from 'zod';
 
 
+
 /**
  * @summary List customers
  */
@@ -25,7 +26,7 @@ export const ListCustomersResponse = zod.object({
   "customers": zod.array(zod.object({
   "id": zod.string(),
   "name": zod.string(),
-  "email": zod.string().email(),
+  "email": zod.email(),
   "phone": zod.string().optional()
 })),
   "pagination": zod.object({
@@ -41,7 +42,7 @@ export const ListCustomersResponse = zod.object({
  */
 export const CreateCustomerBody = zod.object({
   "name": zod.string(),
-  "email": zod.string().email(),
+  "email": zod.email(),
   "phone": zod.string().optional()
 })
 
@@ -55,7 +56,7 @@ export const GetCustomerParams = zod.object({
 export const GetCustomerResponse = zod.object({
   "id": zod.string(),
   "name": zod.string(),
-  "email": zod.string().email(),
+  "email": zod.email(),
   "phone": zod.string().optional()
 })
 
@@ -68,14 +69,14 @@ export const UpdateCustomerParams = zod.object({
 
 export const UpdateCustomerBody = zod.object({
   "name": zod.string().optional(),
-  "email": zod.string().email().optional(),
+  "email": zod.email().optional(),
   "phone": zod.string().optional()
 })
 
 export const UpdateCustomerResponse = zod.object({
   "id": zod.string(),
   "name": zod.string(),
-  "email": zod.string().email(),
+  "email": zod.email(),
   "phone": zod.string().optional()
 })
 

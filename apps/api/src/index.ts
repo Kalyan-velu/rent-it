@@ -1,24 +1,24 @@
-import * as Sentry from '@sentry/node';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import csrf from 'csurf';
-import dotenv from 'dotenv';
-import express, { Application, NextFunction, Request, Response } from 'express';
-import rateLimit from 'express-rate-limit';
-import helmet from 'helmet';
-import path from 'path';
-import swaggerUi from 'swagger-ui-express';
+import * as Sentry from "@sentry/node";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import csrf from "@dr.pogodin/csurf";
+import dotenv from "dotenv";
+import express, { Application, NextFunction, Request, Response } from "express";
+import rateLimit from "express-rate-limit";
+import helmet from "helmet";
+import path from "path";
+import swaggerUi from "swagger-ui-express";
 import {
   createAuthModule,
   createBookingsModule,
   createCustomersModule,
   createTenantsModule,
   createVehiclesModule,
-} from './modules';
+} from "./modules";
 
-import { httpExceptionFilter } from './common';
+import { httpExceptionFilter } from "./common";
 
-import { getRedisClient } from './utils/redis';
+import { getRedisClient } from "./utils/redis";
 
 dotenv.config();
 
@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 4000;
 if (process.env.SENTRY_DSN) {
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
-    environment: process.env.NODE_ENV || 'development',
+    environment: process.env.NODE_ENV || "development",
     tracesSampleRate: 1.0,
   });
 }
@@ -40,9 +40,9 @@ app.use(
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "'unsafe-inline'"],
         styleSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", 'data:', 'https:'],
-        connectSrc: ["'self'", process.env.API_URL || '*'],
-        fontSrc: ["'self'", 'data:'],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: ["'self'", process.env.API_URL || "*"],
+        fontSrc: ["'self'", "data:"],
         objectSrc: ["'none'"],
         mediaSrc: ["'self'"],
         frameSrc: ["'none'"],
@@ -53,22 +53,22 @@ app.use(
       includeSubDomains: true,
       preload: true,
     },
-  })
+  }),
 );
 
 app.use(
   cors({
-    origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
+    origin: process.env.ALLOWED_ORIGINS?.split(",") || "*",
     credentials: true,
-  })
+  }),
 );
 
 app.use(cookieParser());
 
 const csrfProtection = csrf({ cookie: true });
 
-app.use('/', (req: Request, res: Response, next: NextFunction) => {
-  if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
+app.use("/", (req: Request, res: Response, next: NextFunction) => {
+  if (["POST", "PUT", "DELETE", "PATCH"].includes(req.method)) {
     return csrfProtection(req as any, res as any, next);
   }
   next();
@@ -76,10 +76,10 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   if (req.csrfToken) {
-    res.cookie('XSRF-TOKEN', req.csrfToken(), {
+    res.cookie("XSRF-TOKEN", req.csrfToken(), {
       httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
     });
   }
   next();
@@ -88,33 +88,33 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
-  message: 'Too many requests from this IP, please try again later.',
+  message: "Too many requests from this IP, please try again later.",
 });
-app.use('/api/', limiter);
+app.use("/api/", limiter);
 
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve the spec YAML from the monorepo package at /api/docs/spec/openapi.yaml
-const openapiDir = path.resolve(__dirname, '../../../packages/api-spec');
-app.get('/api/docs/spec/openapi.yaml', (_req: Request, res: Response) => {
-  res.sendFile(path.join(openapiDir, 'openapi.yaml'));
+const openapiDir = path.resolve(__dirname, "../../../packages/api-spec");
+app.get("/api/docs/spec/openapi.yaml", (_req: Request, res: Response) => {
+  res.sendFile(path.join(openapiDir, "openapi.yaml"));
 });
 
 // Mount Swagger UI at /api/docs
 app.use(
-  '/api/docs',
+  "/api/docs",
   swaggerUi.serve,
   swaggerUi.setup(undefined, {
-    swaggerUrl: '/api/docs/spec/openapi.yaml',
-  })
+    swaggerUrl: "/api/docs/spec/openapi.yaml",
+  }),
 );
 
 // Health check endpoint
-app.get('/health', (_req: Request, res: Response) => {
+app.get("/health", (_req: Request, res: Response) => {
   res.status(200).json({
-    status: 'healthy',
+    status: "healthy",
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
   });
@@ -123,23 +123,23 @@ app.get('/health', (_req: Request, res: Response) => {
 // =====================
 // Mount Modules
 // =====================
-app.use('/api/auth', createAuthModule());
-app.use('/api/customers', createCustomersModule());
-app.use('/api/vehicles', createVehiclesModule());
-app.use('/api/bookings', createBookingsModule());
-app.use('/api/tenants', createTenantsModule());
+app.use("/api/auth", createAuthModule());
+app.use("/api/customers", createCustomersModule());
+app.use("/api/vehicles", createVehiclesModule());
+app.use("/api/bookings", createBookingsModule());
+app.use("/api/tenants", createTenantsModule());
 
 // API root
-app.get('/api', (_req: Request, res: Response) => {
+app.get("/api", (_req: Request, res: Response) => {
   res.json({
-    message: 'Rent-a-Wheel API',
-    version: '1.0.0',
+    message: "Rent-a-Wheel API",
+    version: "1.0.0",
     endpoints: {
-      auth: '/api/auth',
-      customers: '/api/customers',
-      vehicles: '/api/vehicles',
-      bookings: '/api/bookings',
-      tenants: '/api/tenants (super admin only)',
+      auth: "/api/auth",
+      customers: "/api/customers",
+      vehicles: "/api/vehicles",
+      bookings: "/api/bookings",
+      tenants: "/api/tenants (super admin only)",
     },
   });
 });
@@ -147,8 +147,8 @@ app.get('/api', (_req: Request, res: Response) => {
 // 404 handler
 app.use((_req: Request, res: Response) => {
   res.status(404).json({
-    error: 'Not Found',
-    message: 'The requested resource does not exist',
+    error: "Not Found",
+    message: "The requested resource does not exist",
   });
 });
 
@@ -169,15 +169,15 @@ const startServer = async () => {
   try {
     // Initialize Redis
     await getRedisClient();
-    console.log('📦 Redis initialized');
+    console.log("📦 Redis initialized");
 
     app.listen(PORT, () => {
       console.log(`🚀 API Server running on http://localhost:${PORT}`);
-      console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`📊 Environment: ${process.env.NODE_ENV || "development"}`);
       console.log(`🔗 Health check: http://localhost:${PORT}/health`);
     });
   } catch (error) {
-    console.error('❌ Failed to start server:', error);
+    console.error("❌ Failed to start server:", error);
     process.exit(1);
   }
 };

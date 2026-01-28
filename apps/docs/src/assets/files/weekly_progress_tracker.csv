@@ -1,0 +1,40 @@
+Week,Sprint,Start Date,End Date,Planned Story Points,Completed Story Points,Velocity,Status,Blockers,Key Achievements,Next Week Focus
+Week 1,Sprint 0,2026-02-01,2026-02-07,11,0,0%,Not Started,None,None,Project setup and database design
+Week 2,Sprint 0,2026-02-08,2026-02-14,13,0,0%,Not Started,None,None,Authentication and multi-tenancy
+Week 3,Sprint 1,2026-02-15,2026-02-21,10,0,0%,Not Started,None,None,Super admin foundation
+Week 4,Sprint 1,2026-02-22,2026-02-28,13,0,0%,Not Started,None,None,Subscription management
+Week 5,Sprint 2,2026-03-01,2026-03-07,10,0,0%,Not Started,None,None,Service admin dashboard
+Week 6,Sprint 2,2026-03-08,2026-03-14,11,0,0%,Not Started,None,None,Fleet management basics
+Week 7,Sprint 3,2026-03-15,2026-03-21,11,0,0%,Not Started,None,None,Customer management
+Week 8,Sprint 3,2026-03-22,2026-03-28,13,0,0%,Not Started,None,None,Calendar and availability
+Week 9,Sprint 4,2026-03-29,2026-04-04,13,0,0%,Not Started,None,None,Booking creation
+Week 10,Sprint 4,2026-04-05,2026-04-11,13,0,0%,Not Started,None,None,Pricing and agreements
+Week 11,Sprint 5,2026-04-12,2026-04-18,16,0,0%,Not Started,None,None,Invoicing and payments
+Week 12,Sprint 5,2026-04-19,2026-04-25,8,0,0%,Not Started,None,None,Payment processing
+Week 13,Sprint 6,2026-04-26,2026-05-02,13,0,0%,Not Started,None,None,Employee management
+Week 14,Sprint 6,2026-05-03,2026-05-09,13,0,0%,Not Started,None,None,Reporting foundation
+Week 15,Sprint 7,2026-05-10,2026-05-16,13,0,0%,Not Started,None,None,Customer portal UI
+Week 16,Sprint 7,2026-05-17,2026-05-23,13,0,0%,Not Started,None,None,Vehicle browsing
+Week 17,Sprint 8,2026-05-24,2026-05-30,13,0,0%,Not Started,None,None,Availability integration
+Week 18,Sprint 8,2026-05-31,2026-06-06,13,0,0%,Not Started,None,None,Booking flow
+Week 19,Sprint 9,2026-06-07,2026-06-13,9,0,0%,Not Started,None,None,Email notifications
+Week 20,Sprint 9,2026-06-14,2026-06-20,11,0,0%,Not Started,None,None,Customer account
+Week 21,Sprint 10,2026-06-21,2026-06-27,21,0,0%,Not Started,None,None,Testing phase 1
+Week 22,Sprint 10,2026-06-28,2026-07-04,16,0,0%,Not Started,None,None,UAT and bug fixing
+Week 23,Sprint 11,2026-07-05,2026-07-11,11,0,0%,Not Started,None,None,Production setup
+Week 24,Sprint 11,2026-07-12,2026-07-18,13,0,0%,Not Started,None,None,Launch and documentation
+Week 25,Sprint 12,2026-07-19,2026-07-25,13,0,0%,Not Started,None,None,Phase 2 - Pricing rules
+Week 26,Sprint 12,2026-07-26,2026-08-01,13,0,0%,Not Started,None,None,Check-out workflow
+Week 27,Sprint 13,2026-08-02,2026-08-08,13,0,0%,Not Started,None,None,Check-in workflow
+Week 28,Sprint 13,2026-08-09,2026-08-15,13,0,0%,Not Started,None,None,Maintenance system
+Week 29,Sprint 14,2026-08-16,2026-08-22,8,0,0%,Not Started,None,None,Service tracking
+Week 30,Sprint 14,2026-08-23,2026-08-29,10,0,0%,Not Started,None,None,Cancellations
+Week 31,Sprint 15,2026-08-30,2026-09-05,13,0,0%,Not Started,None,None,Advanced analytics
+Week 32,Sprint 15,2026-09-06,2026-09-12,10,0,0%,Not Started,None,None,Financial reports
+Week 33,Sprint 16,2026-09-13,2026-09-19,13,0,0%,Not Started,None,None,Forms builder
+Week 34,Sprint 16,2026-09-20,2026-09-26,10,0,0%,Not Started,None,None,SMS integration
+Week 35,Sprint 17,2026-09-27,2026-10-03,8,0,0%,Not Started,None,None,Automated reminders
+Week 36,Sprint 17,2026-10-04,2026-10-10,13,0,0%,Not Started,None,None,Booking modifications
+Week 37,Sprint 18,2026-10-11,2026-10-17,13,0,0%,Not Started,None,None,Document uploads
+Week 38,Sprint 18,2026-10-18,2026-10-24,13,0,0%,Not Started,None,None,Support system
+Week 39,Sprint 19,2026-10-25,2026-10-31,18,0,0%,Not Started,None,None,Phase 2 testing & deployment

@@ -1,6 +1,11 @@
 # Rent-a-Wheel Platform
 
-A comprehensive multi-tenant SaaS platform for vehicle rental providers with CRM, subscription management, integrations, itinerary builder, and no-code website builder.
+A comprehensive multi-tenant SaaS platform for vehicle rental providers with CRM, subscription management, and booking engine.
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20+-green.svg)](https://nodejs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14+-blue.svg)](https://www.postgresql.org/)
+[![Turborepo](https://img.shields.io/badge/Turborepo-2.7-blueviolet.svg)](https://turbo.build/)
 
 ## 🏗️ Project Structure
 
@@ -9,37 +14,41 @@ rent-a-wheel/
 ├── apps/
 │   ├── api/          # Express.js backend API
 │   ├── crm/          # Next.js CRM application for rental providers
-│   └── admin/        # React super admin dashboard
+│   ├── admin/        # React super admin dashboard
+│   └── docs/         # Astro Starlight documentation
 ├── packages/
 │   ├── database/     # Prisma schema and database utilities
 │   ├── auth/         # Authentication utilities (JWT, Passkey, RBAC+ABAC)
+│   ├── api-client/   # Generated API client (Orval)
+│   ├── api-spec/     # OpenAPI specification
 │   ├── ui/           # Shared UI components
 │   ├── eslint-config/
 │   └── typescript-config/
+└── tests/            # E2E tests with Playwright
 ```
 
 ## 🚀 Tech Stack
 
-- **Monorepo**: Turborepo
-- **Backend**: Express.js with TypeScript
-- **CRM Frontend**: Next.js 14+ (App Router)
-- **Super Admin**: React with Vite
-- **Database**: PostgreSQL with Prisma ORM
-- **Authentication**: OAuth + Passkey (WebAuthn) + Email
-- **Access Control**: Hybrid ABAC + RBAC
-- **Payment Gateway**: Cashfree
-- **File Storage**: AWS S3
-- **Email**: AWS SES or Resend
-- **Background Jobs**: Kafka
-- **Monitoring**: Sentry
-- **Rate Limiting**: Express rate-limit
+| Component          | Technology                 |
+| ------------------ | -------------------------- |
+| **Monorepo**       | Turborepo + pnpm           |
+| **Backend**        | Express.js with TypeScript |
+| **CRM Frontend**   | Next.js 14+ (App Router)   |
+| **Super Admin**    | React with Vite            |
+| **Database**       | PostgreSQL with Prisma ORM |
+| **Authentication** | JWT + Passkey (WebAuthn)   |
+| **Access Control** | Hybrid ABAC + RBAC         |
+| **API Docs**       | OpenAPI + Swagger UI       |
+| **Documentation**  | Astro Starlight            |
+| **Testing**        | Vitest + Playwright        |
+| **Monitoring**     | Sentry                     |
 
 ## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- pnpm 9+
+- Node.js 20+
+- pnpm 10+
 - PostgreSQL 14+
 - Docker (optional, for local services)
 
@@ -64,9 +73,13 @@ pnpm dev
 ```
 
 This will start:
-- API server on `http://localhost:4000`
-- CRM app on `http://localhost:3000`
-- Admin dashboard on `http://localhost:3001`
+
+| Application     | URL                              | Description          |
+| --------------- | -------------------------------- | -------------------- |
+| API Server      | `http://localhost:4000`          | Express.js backend   |
+| CRM App         | `http://localhost:3000`          | Next.js CRM frontend |
+| Admin Dashboard | `http://localhost:3001`          | React super admin    |
+| API Docs        | `http://localhost:4000/api/docs` | Swagger UI           |
 
 ## 🛠️ Development
 
@@ -85,6 +98,9 @@ pnpm lint
 
 # Type checking
 pnpm check-types
+
+# Generate API client from OpenAPI spec
+pnpm openapi:generate
 
 # Open Prisma Studio (database GUI)
 pnpm db:studio
@@ -108,49 +124,55 @@ pnpm db:studio
 
 ## 🔐 Authentication
 
-The platform supports three authentication methods:
+The platform supports multiple authentication methods:
 
-1. **Email + Password**: Traditional email/password authentication
-2. **OAuth**: Google, GitHub, etc.
-3. **Passkey (WebAuthn)**: Passwordless authentication with biometrics
+| Method                 | Status      | Description                       |
+| ---------------------- | ----------- | --------------------------------- |
+| **Email + Password**   | ✅ Complete | Traditional credential-based auth |
+| **Passkey (WebAuthn)** | ✅ Complete | Passwordless biometric auth       |
+| **OAuth**              | 🔨 Planned  | Google, GitHub social login       |
 
 ## 🏢 Multi-Tenancy
 
 The platform uses tenant isolation with:
-- Subdomain-based routing (`provider.rentawheel.com`)
-- Row-level security (tenant_id in all tables)
-- Hybrid RBAC + ABAC access control
+
+- **Subdomain-based routing** (`provider.rentawheel.com`)
+- **Row-level security** (`tenant_id` on all tables)
+- **Hybrid RBAC + ABAC** access control
+
+### User Roles
+
+| Role           | Description                      |
+| -------------- | -------------------------------- |
+| `SUPER_ADMIN`  | Platform owner with full access  |
+| `TENANT_ADMIN` | Rental business owner            |
+| `TENANT_USER`  | Staff member with limited access |
 
 ## 📊 Subscription Tiers
 
-1. **Basic** - $29/month
-   - 100 customers
-   - 100 forms/submissions
-   - CRM features
-   - Email integration
-
-2. **Professional** - $99/month
-   - 1,000 customers
-   - 1,000 forms/submissions
-   - All Basic features
-   - WhatsApp & Slack integration
-   - Funnel management
-
-3. **Enterprise** - $299/month
-   - Unlimited customers
-   - Unlimited forms/submissions
-   - All Professional features
-   - Website builder
-   - Custom domain support
-   - Priority support
+| Tier             | Price      | Limits                        |
+| ---------------- | ---------- | ----------------------------- |
+| **Basic**        | $29/month  | 100 customers, 100 forms      |
+| **Professional** | $99/month  | 1,000 customers, integrations |
+| **Enterprise**   | $299/month | Unlimited, website builder    |
 
 ## 📚 Documentation
 
-- [API Documentation](./docs/api.md) (coming soon)
-- [Architecture Guide](./docs/architecture.md) (coming soon)
-- [Contributing Guide](./CONTRIBUTING.md) (coming soon)
+Full documentation is available in the `apps/docs` folder and can be viewed by running `pnpm dev`.
+
+Key documentation pages:
+
+- [Getting Started](./apps/docs/src/content/docs/guides/getting-started.md)
+- [Architecture Overview](./apps/docs/src/content/docs/technical/architecture.md)
+- [Database Schema](./apps/docs/src/content/docs/technical/database.md)
+- [API Reference](./apps/docs/src/content/docs/technical/api.md)
+- [Authentication](./apps/docs/src/content/docs/technical/auth.md)
+
+Additional guides:
+
 - [AI Agents Guide](./agents.md)
 - [Project Rules](./rules.md)
+- [Docker Guide](./DOCKER.md)
 
 ## 🧪 Testing
 
@@ -161,13 +183,24 @@ pnpm test
 # Run tests in watch mode
 pnpm test:watch
 
-# Run tests with UI (Vitest)
-pnpm test:ui
+# Run E2E tests
+pnpm test:e2e
 ```
 
-## 🚢 Deployment
+## 🐳 Docker
 
-(Deployment instructions coming soon)
+```bash
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+```
+
+See [DOCKER.md](./DOCKER.md) for detailed Docker instructions.
 
 ## 📄 License
 

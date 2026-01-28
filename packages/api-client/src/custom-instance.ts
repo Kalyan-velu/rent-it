@@ -1,20 +1,20 @@
-import Axios, { AxiosRequestConfig } from 'axios';
+import Axios, { AxiosError, AxiosRequestConfig } from 'axios'
 
 export const AXIOS_INSTANCE = Axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
-});
+})
 
-export const customInstance = <T>(config: AxiosRequestConfig): Promise<T> => {
-  const source = Axios.CancelToken.source();
-  const promise = AXIOS_INSTANCE({
+export const customInstance = async <T>(url: string, config: any): Promise<T> => {
+  const response = await AXIOS_INSTANCE({
+    url,
     ...config,
-    cancelToken: source.token,
-  }).then(({ data }) => data);
-  
-  // @ts-ignore
-  promise.cancel = () => {
-    source.cancel('Query was cancelled');
-  };
-  
-  return promise;
-};
+  })
+  return {
+    data: response.data,
+    status: response.status,
+    headers: response.headers,
+  } as T
+}
+
+export type ErrorType<Error> = AxiosError<Error>
+export type BodyType<BodyData> = BodyData

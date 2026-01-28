@@ -1,0 +1,98 @@
+Sprint,Week,Phase,Component,Feature/Task,Description,Priority,Story Points,Status,Dependencies,Assignee,Notes
+Sprint 0,Week 1,Setup,Infrastructure,Project Setup,Initialize repository and development environment,CRITICAL,3,Not Started,None,,
+Sprint 0,Week 1,Setup,Infrastructure,Database Design,Design complete database schema with multi-tenancy,CRITICAL,5,Not Started,Project Setup,,ERD diagrams needed
+Sprint 0,Week 1,Setup,Infrastructure,Tech Stack Setup,Setup Node.js/Express + PostgreSQL + React,CRITICAL,3,Not Started,Project Setup,,
+Sprint 0,Week 2,Setup,Infrastructure,Authentication System,Implement JWT-based auth with role management,CRITICAL,8,Not Started,Database Design,,Include password reset
+Sprint 0,Week 2,Setup,Infrastructure,Multi-tenancy Middleware,Build tenant isolation layer,CRITICAL,5,Not Started,Database Design,,tenant_id filtering
+Sprint 1,Week 3,Phase 1,Super Admin,Super Admin Dashboard UI,Build basic dashboard layout,HIGH,5,Not Started,Authentication System,,
+Sprint 1,Week 3,Phase 1,Super Admin,Subscription Plans CRUD,Create/read/update subscription plans,HIGH,5,Not Started,Super Admin Dashboard UI,,
+Sprint 1,Week 4,Phase 1,Super Admin,Service Admin Account Creation,Onboarding flow for new rental businesses,HIGH,8,Not Started,Subscription Plans CRUD,,Include email verification
+Sprint 1,Week 4,Phase 1,Super Admin,Subscription Billing,Basic billing cycle management,HIGH,5,Not Started,Service Admin Account Creation,,
+Sprint 2,Week 5,Phase 1,Service Admin,Service Admin Dashboard UI,Main dashboard with navigation,CRITICAL,5,Not Started,Authentication System,,
+Sprint 2,Week 5,Phase 1,Service Admin,Company Profile Setup,Business info form and storage,CRITICAL,5,Not Started,Service Admin Dashboard UI,,Logo upload included
+Sprint 2,Week 6,Phase 1,Service Admin,Fleet Management - Vehicle CRUD,Add/edit/delete/view vehicles,CRITICAL,8,Not Started,Company Profile Setup,,Include image upload
+Sprint 2,Week 6,Phase 1,Service Admin,Vehicle Categories,Define and manage vehicle categories,HIGH,3,Not Started,Fleet Management - Vehicle CRUD,,Economy/SUV/Luxury etc
+Sprint 3,Week 7,Phase 1,Service Admin,Customer Management - CRUD,Add/edit/view customer records,CRITICAL,8,Not Started,Service Admin Dashboard UI,,Include license info
+Sprint 3,Week 7,Phase 1,Service Admin,Customer Search & Filter,Search customers by name/phone/email,MEDIUM,3,Not Started,Customer Management - CRUD,,
+Sprint 3,Week 8,Phase 1,Service Admin,Basic Availability Calendar,Calendar view showing vehicle status,CRITICAL,8,Not Started,Fleet Management - Vehicle CRUD,,Month/week/day views
+Sprint 3,Week 8,Phase 1,Service Admin,Availability Check Engine,Real-time availability checking logic,CRITICAL,5,Not Started,Basic Availability Calendar,,Prevent double booking
+Sprint 4,Week 9,Phase 1,Service Admin,Manual Booking Creation,Create bookings from admin panel,CRITICAL,8,Not Started,Availability Check Engine,,
+Sprint 4,Week 9,Phase 1,Service Admin,Booking Status Management,Update booking status workflow,CRITICAL,5,Not Started,Manual Booking Creation,,Pending/Confirmed/Active/Completed
+Sprint 4,Week 10,Phase 1,Service Admin,Basic Pricing Setup,Set base rates per vehicle,HIGH,5,Not Started,Fleet Management - Vehicle CRUD,,Daily/weekly/monthly rates
+Sprint 4,Week 10,Phase 1,Service Admin,Rental Agreement Templates,Create customizable agreement templates,HIGH,8,Not Started,Company Profile Setup,,Dynamic fields
+Sprint 5,Week 11,Phase 1,Service Admin,Invoice Generation,Auto-generate invoices for bookings,CRITICAL,8,Not Started,Manual Booking Creation,,Include tax calculation
+Sprint 5,Week 11,Phase 1,Service Admin,Payment Gateway Integration,Integrate Stripe for payments,CRITICAL,8,Not Started,Invoice Generation,,Test & live modes
+Sprint 5,Week 12,Phase 1,Service Admin,Payment Processing,Record and track payments,CRITICAL,5,Not Started,Payment Gateway Integration,,Cash/Card/Online
+Sprint 5,Week 12,Phase 1,Service Admin,Receipt Generation,Auto-generate payment receipts,HIGH,3,Not Started,Payment Processing,,Email delivery
+Sprint 6,Week 13,Phase 1,Service Admin,Employee User Management,Add users with role assignment,CRITICAL,8,Not Started,Authentication System,,Admin/Manager/Staff roles
+Sprint 6,Week 13,Phase 1,Service Admin,Role-Based Permissions,Implement permission checks,HIGH,5,Not Started,Employee User Management,,Module-level access control
+Sprint 6,Week 14,Phase 1,Service Admin,Basic Reports - Revenue,Monthly/yearly revenue reports,HIGH,5,Not Started,Payment Processing,,Export to CSV
+Sprint 6,Week 14,Phase 1,Service Admin,Basic Reports - Bookings,Booking summary and trends,HIGH,5,Not Started,Booking Status Management,,Filter by date range
+Sprint 6,Week 14,Phase 1,Service Admin,Basic Reports - Fleet Status,Current fleet utilization,MEDIUM,3,Not Started,Fleet Management - Vehicle CRUD,,Available/Booked/Maintenance
+Sprint 7,Week 15,Phase 1,Customer Portal,Customer Portal UI,Build customer-facing website,CRITICAL,8,Not Started,Authentication System,,Responsive design
+Sprint 7,Week 15,Phase 1,Customer Portal,Customer Registration & Login,User account creation and auth,CRITICAL,5,Not Started,Customer Portal UI,,Social login optional
+Sprint 7,Week 16,Phase 1,Customer Portal,Vehicle Browsing Page,Display available vehicles,CRITICAL,8,Not Started,Customer Portal UI,,Grid/list views
+Sprint 7,Week 16,Phase 1,Customer Portal,Vehicle Search & Filters,Filter by category/price/features,HIGH,5,Not Started,Vehicle Browsing Page,,Date range picker
+Sprint 8,Week 17,Phase 1,Customer Portal,Real-time Availability Check,Check availability for selected dates,CRITICAL,8,Not Started,Availability Check Engine,,API integration
+Sprint 8,Week 17,Phase 1,Customer Portal,Booking Flow - Step 1,Date/time/vehicle selection,CRITICAL,5,Not Started,Real-time Availability Check,,
+Sprint 8,Week 18,Phase 1,Customer Portal,Booking Flow - Step 2,Customer info and add-ons,CRITICAL,5,Not Started,Booking Flow - Step 1,,Extras like GPS/insurance
+Sprint 8,Week 18,Phase 1,Customer Portal,Booking Flow - Step 3,Review and payment,CRITICAL,8,Not Started,Payment Gateway Integration,,Price breakdown
+Sprint 9,Week 19,Phase 1,Notifications,Email Service Setup,Configure SendGrid/Mailgun,CRITICAL,3,Not Started,Infrastructure,,Template system
+Sprint 9,Week 19,Phase 1,Notifications,Booking Confirmation Email,Send email on booking creation,CRITICAL,3,Not Started,Email Service Setup,,To customer and admin
+Sprint 9,Week 19,Phase 1,Notifications,Payment Confirmation Email,Send receipt via email,HIGH,3,Not Started,Email Service Setup,,Include PDF attachment
+Sprint 9,Week 20,Phase 1,Notifications,Invoice Email Delivery,Email invoices to customers,HIGH,3,Not Started,Invoice Generation,,
+Sprint 9,Week 20,Phase 1,Customer Portal,Customer Account Dashboard,View profile and bookings,HIGH,5,Not Started,Customer Registration & Login,,
+Sprint 9,Week 20,Phase 1,Customer Portal,Booking History,View past and upcoming bookings,HIGH,3,Not Started,Customer Account Dashboard,,Download invoices
+Sprint 10,Week 21,Phase 1,Testing,Unit Testing,Write unit tests for critical functions,HIGH,8,Not Started,All Phase 1 features,,>70% coverage target
+Sprint 10,Week 21,Phase 1,Testing,Integration Testing,Test API endpoints and workflows,HIGH,5,Not Started,Unit Testing,,
+Sprint 10,Week 22,Phase 1,Testing,User Acceptance Testing,End-to-end testing with scenarios,HIGH,8,Not Started,Integration Testing,,Create test scenarios
+Sprint 10,Week 22,Phase 1,Testing,Bug Fixing - Critical,Fix critical and high priority bugs,CRITICAL,8,Not Started,User Acceptance Testing,,
+Sprint 11,Week 23,Phase 1,Deployment,Production Environment Setup,Configure production server,CRITICAL,5,Not Started,Testing,,DigitalOcean/Hetzner
+Sprint 11,Week 23,Phase 1,Deployment,Database Migration,Setup production database,CRITICAL,3,Not Started,Production Environment Setup,,Backup strategy
+Sprint 11,Week 23,Phase 1,Deployment,SSL & Domain Configuration,Setup domain and SSL certificate,HIGH,3,Not Started,Production Environment Setup,,Let's Encrypt
+Sprint 11,Week 24,Phase 1,Deployment,Deployment & Launch,Deploy application to production,CRITICAL,5,Not Started,Database Migration,,CI/CD pipeline
+Sprint 11,Week 24,Phase 1,Deployment,Monitoring Setup,Configure uptime and error monitoring,HIGH,3,Not Started,Deployment & Launch,,Sentry/UptimeRobot
+Sprint 11,Week 24,Phase 1,Documentation,User Documentation,Create admin and customer guides,MEDIUM,5,Not Started,Deployment & Launch,,Video tutorials optional
+Sprint 12,Week 25,Phase 2,Service Admin,Pricing Rules Engine,Seasonal/dynamic pricing,HIGH,8,Not Started,Basic Pricing Setup,,Percentage/fixed adjustments
+Sprint 12,Week 25,Phase 2,Service Admin,Extra Charges Management,GPS/insurance/child seat pricing,HIGH,5,Not Started,Pricing Rules Engine,,
+Sprint 12,Week 26,Phase 2,Service Admin,Deposit Management,Collect and refund deposits,HIGH,8,Not Started,Payment Processing,,Hold/release workflow
+Sprint 12,Week 26,Phase 2,Service Admin,Check-out Workflow,Vehicle inspection on pickup,CRITICAL,8,Not Started,Booking Status Management,,Photo upload for condition
+Sprint 13,Week 27,Phase 2,Service Admin,Check-in Workflow,Vehicle inspection on return,CRITICAL,8,Not Started,Check-out Workflow,,Damage assessment
+Sprint 13,Week 27,Phase 2,Service Admin,Damage Reporting,Record and track vehicle damage,HIGH,5,Not Started,Check-in Workflow,,Photo evidence
+Sprint 13,Week 28,Phase 2,Service Admin,Additional Charges,Late fees/fuel/damage charges,HIGH,5,Not Started,Check-in Workflow,,Auto-calculation
+Sprint 13,Week 28,Phase 2,Service Admin,Maintenance Scheduling,Schedule and track maintenance,HIGH,8,Not Started,Fleet Management - Vehicle CRUD,,Calendar integration
+Sprint 14,Week 29,Phase 2,Service Admin,Service History Tracking,Maintenance records per vehicle,MEDIUM,5,Not Started,Maintenance Scheduling,,Cost tracking
+Sprint 14,Week 29,Phase 2,Service Admin,Maintenance Reminders,Auto-alerts for due maintenance,MEDIUM,3,Not Started,Maintenance Scheduling,,Email/SMS notifications
+Sprint 14,Week 30,Phase 2,Service Admin,Cancellation Management,Handle booking cancellations,HIGH,5,Not Started,Booking Status Management,,Policy-based refunds
+Sprint 14,Week 30,Phase 2,Service Admin,Refund Processing,Process partial/full refunds,HIGH,5,Not Started,Cancellation Management,,Payment gateway integration
+Sprint 15,Week 31,Phase 2,Service Admin,Advanced Analytics Dashboard,Enhanced reporting with charts,MEDIUM,8,Not Started,Basic Reports - Revenue,,Chart.js/Recharts
+Sprint 15,Week 31,Phase 2,Service Admin,Customer Analytics,Lifetime value and behavior,MEDIUM,5,Not Started,Customer Management - CRUD,,Repeat customer tracking
+Sprint 15,Week 32,Phase 2,Service Admin,Expense Tracking,Record operational expenses,MEDIUM,5,Not Started,Service Admin Dashboard UI,,Fuel/maintenance/insurance
+Sprint 15,Week 32,Phase 2,Service Admin,Profit/Loss Reports,Financial summary reports,MEDIUM,5,Not Started,Expense Tracking,,Revenue vs expenses
+Sprint 16,Week 33,Phase 2,Service Admin,Custom Forms Builder,Create custom rental forms,MEDIUM,8,Not Started,Service Admin Dashboard UI,,Drag-and-drop builder
+Sprint 16,Week 33,Phase 2,Service Admin,Document Upload & Storage,Store customer documents,HIGH,5,Not Started,Customer Management - CRUD,,Secure file storage
+Sprint 16,Week 34,Phase 2,Notifications,SMS Integration,Setup Twilio for SMS,HIGH,5,Not Started,Email Service Setup,,
+Sprint 16,Week 34,Phase 2,Notifications,SMS Notifications,Send booking/reminder SMS,HIGH,5,Not Started,SMS Integration,,Template management
+Sprint 17,Week 35,Phase 2,Notifications,Automated Reminders,24hr before pickup/return,HIGH,5,Not Started,SMS Notifications,,Cron jobs/schedulers
+Sprint 17,Week 35,Phase 2,Notifications,Overdue Alerts,Alert for late returns,HIGH,3,Not Started,Automated Reminders,,To admin and customer
+Sprint 17,Week 36,Phase 2,Customer Portal,Booking Modification,Extend or change bookings,HIGH,8,Not Started,Customer Account Dashboard,,Policy validation
+Sprint 17,Week 36,Phase 2,Customer Portal,Booking Cancellation,Customer-initiated cancellation,HIGH,5,Not Started,Booking Modification,,Show refund amount
+Sprint 18,Week 37,Phase 2,Customer Portal,Document Upload,Upload license/insurance,HIGH,5,Not Started,Customer Account Dashboard,,OCR validation optional
+Sprint 18,Week 37,Phase 2,Customer Portal,Digital Agreement Signing,E-sign rental agreements,HIGH,8,Not Started,Document Upload,,Canvas signature
+Sprint 18,Week 38,Phase 2,Customer Portal,Support Ticket System,Customer queries and support,MEDIUM,8,Not Started,Customer Account Dashboard,,Admin response interface
+Sprint 18,Week 38,Phase 2,Customer Portal,Rating & Review System,Post-rental feedback,MEDIUM,5,Not Started,Customer Account Dashboard,,Display on vehicle pages
+Sprint 19,Week 39,Phase 2,Testing,Phase 2 Testing,Test all Phase 2 features,HIGH,13,Not Started,All Phase 2 features,,
+Sprint 19,Week 40,Phase 2,Deployment,Phase 2 Deployment,Deploy Phase 2 to production,HIGH,5,Not Started,Phase 2 Testing,,Zero-downtime deployment
+Sprint 20,Week 41,Phase 3,Service Admin,GPS Tracking Integration,Integrate telematics system,MEDIUM,13,Not Started,Fleet Management - Vehicle CRUD,,Third-party API
+Sprint 20,Week 41,Phase 3,Service Admin,Fuel Monitoring,Track fuel usage per rental,MEDIUM,5,Not Started,GPS Tracking Integration,,
+Sprint 20,Week 42,Phase 3,Service Admin,Multi-location Support,Manage multiple branches,MEDIUM,13,Not Started,Company Profile Setup,,Location-based availability
+Sprint 20,Week 43,Phase 3,Service Admin,Corporate Customer Module,B2B customer management,MEDIUM,13,Not Started,Customer Management - CRUD,,Contract pricing
+Sprint 20,Week 44,Phase 3,Service Admin,Loyalty Program,Points and rewards system,LOW,13,Not Started,Customer Analytics,,Redemption logic
+Sprint 21,Week 45,Phase 3,Customer Portal,Mobile App - iOS,Native iOS application,MEDIUM,21,Not Started,Customer Portal,External Developer,React Native
+Sprint 21,Week 46,Phase 3,Customer Portal,Mobile App - Android,Native Android application,MEDIUM,21,Not Started,Mobile App - iOS,External Developer,React Native
+Sprint 21,Week 47,Phase 3,Integration,Accounting Software Integration,QuickBooks/Xero integration,LOW,13,Not Started,Profit/Loss Reports,,API integration
+Sprint 21,Week 48,Phase 3,Integration,Public API,REST API for third parties,LOW,13,Not Started,Service Admin,External Developer,OAuth2 authentication
+Sprint 22,Week 49,Phase 3,AI/ML,Dynamic Pricing Algorithm,ML-based pricing optimization,LOW,21,Not Started,Pricing Rules Engine,Data Scientist,Requires historical data
+Sprint 22,Week 50,Phase 3,AI/ML,Automated ID Verification,OCR + facial recognition,MEDIUM,13,Not Started,Document Upload,External Service,Third-party API
+Sprint 22,Week 51,Phase 3,Enhancement,Multi-language Support,Internationalization,LOW,13,Not Started,All UI components,,i18n implementation
+Sprint 22,Week 52,Phase 3,Enhancement,White-label Customization,Per-tenant branding,MEDIUM,8,Not Started,Super Admin,,Theme customization

@@ -1,0 +1,9 @@
+Story Points,Complexity,Time Estimate,Examples
+1,Trivial,1-2 hours,Minor UI tweaks; Configuration changes; Simple text updates
+2,Very Simple,2-4 hours,Basic CRUD operation for simple entity; Simple form validation
+3,Simple,4-8 hours,Standard CRUD with validation; Basic API endpoint; Simple component
+5,Medium,1-2 days,Complex form with multiple validations; API with business logic; Feature component
+8,Complex,3-5 days,Complete feature module; Integration with third party; Complex workflow
+13,Very Complex,1-2 weeks,Large feature spanning multiple modules; Complex integration; Major refactoring
+21,Extremely Complex,2-4 weeks,Entire subsystem; Mobile app; Complex third-party integration
+34,Epic,1-2 months,Major platform feature; Complete redesign; Multiple complex integrations

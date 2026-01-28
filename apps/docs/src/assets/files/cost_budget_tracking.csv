@@ -1,0 +1,33 @@
+Category,Item,Provider/Tool,Monthly Cost (USD),Annual Cost (USD),Notes,Phase Required
+Hosting,VPS Server,DigitalOcean/Hetzner,20,240,4GB RAM 2vCPU 80GB SSD,Phase 1
+Database,Managed PostgreSQL,DigitalOcean,15,180,1GB RAM - Basic tier,Phase 1
+Storage,Object Storage,DigitalOcean Spaces,5,60,50GB storage,Phase 1
+Email,Transactional Email,SendGrid,15,180,10000 emails/month,Phase 1
+SMS,SMS Gateway,Twilio,10,120,~1000 SMS/month,Phase 2
+Payment,Payment Gateway,Stripe,0,0,2.9% + $0.30 per transaction,Phase 1
+Domain,Domain Name,Namecheap,1,12,.com domain,Phase 1
+SSL,SSL Certificate,Let's Encrypt,0,0,Free automated SSL,Phase 1
+Backup,Backup Storage,Backblaze B2,5,60,100GB backup storage,Phase 1
+Monitoring,Uptime Monitoring,UptimeRobot,0,0,Free tier - 50 monitors,Phase 1
+Monitoring,Error Tracking,Sentry,0,0,Free tier - 5k events/month,Phase 1
+CDN,Content Delivery,Cloudflare,0,0,Free tier,Phase 1
+Development,Code Repository,GitHub,0,0,Free for public repos,Phase 1
+Development,IDE,VS Code,0,0,Free and open source,Phase 1
+Development,Design Tool,Figma,0,0,Free tier,Phase 1
+Development,Project Management,Trello/Notion,0,0,Free tier,Phase 1
+E-Signature,Digital Signatures,DocuSign/SignNow,10,120,Alternative: Build own,Phase 1
+Analytics,User Analytics,Google Analytics,0,0,Free,Phase 2
+Testing,Load Testing,K6,0,0,Free and open source,Phase 2
+Total (Phase 1),,,,852,Without transaction fees,
+Total (Phase 2 - with SMS),,,,972,Including SMS service,
+,,,,,
+Scaling Costs (per 10 additional service admins),,,,,
+Hosting Upgrade,VPS Upgrade,DigitalOcean,30,360,8GB RAM 4vCPU,As needed
+Database Scaling,PostgreSQL Upgrade,DigitalOcean,25,300,4GB RAM tier,As needed
+Email Scaling,Additional Emails,SendGrid,20,240,+15000 emails,As needed
+SMS Scaling,Additional SMS,Twilio,15,180,+1500 SMS,As needed
+,,,,,
+One-Time Development Costs (If Outsourcing),,,,,
+Phase 1 Development,Full-stack developer,Freelancer (estimated),,,25000-40000,990-1240 hours @ $25-35/hr
+UI/UX Design,Designer,Freelancer (estimated),,,3000-5000,80-100 hours @ $30-50/hr
+Testing & QA,QA Engineer,Freelancer (estimated),,,2000-3500,60-80 hours @ $25-40/hr
