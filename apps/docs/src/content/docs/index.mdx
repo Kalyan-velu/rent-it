@@ -1,0 +1,52 @@
+---
+title: Welcome to Rent-a-Wheel
+description: The comprehensive documentation for the Rent-a-Wheel car rental platform.
+template: splash
+hero:
+  tagline: Your guide to building and managing the Rent-a-Wheel platform.
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Project Overview
+      link: /reference/project_spec/
+      icon: right-arrow
+    - text: View Sprint Plan
+      link: /planning/sprint-plan/
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Quick Access
+
+<CardGrid stagger>
+  <Card
+    title='Planning & Management'
+    icon='pencil'
+  >
+    Access the **[Sprint Plan](/planning/sprint-plan)**, **[Progress
+    Tracker](/planning/progress)**, and **[Estimation
+    Guide](/planning/estimation)**.
+  </Card>
+  <Card
+    title='Technical Architecture'
+    icon='setting'
+  >
+    Review the **[Database Schema](/technical/database)** and **[Technical
+    Risks](/technical/risks)**.
+  </Card>
+  <Card
+    title='Product Features'
+    icon='rocket'
+  >
+    Explore the **[Feature Priority Matrix](/product/features)** and **[Budget
+    Tracking](/product/budget)**.
+  </Card>
+  <Card
+    title='Project Spec'
+    icon='open-book'
+  >
+    Read the full **[Project Specification](/reference/project_spec)**.
+  </Card>
+</CardGrid>

@@ -1,0 +1,43 @@
+Feature,Component,Business Value (1-10),Technical Complexity (1-10),User Impact (1-10),Priority Score,Phase,Must Have,Notes
+Multi-tenancy,Infrastructure,10,8,10,28,Phase 1,YES,Foundation for entire platform
+Authentication & Authorization,Infrastructure,10,7,10,27,Phase 1,YES,Security critical
+Fleet Management CRUD,Service Admin,10,5,10,25,Phase 1,YES,Core business function
+Availability Calendar,Service Admin,10,7,10,27,Phase 1,YES,Prevents double booking
+Manual Booking Creation,Service Admin,10,6,10,26,Phase 1,YES,Primary admin workflow
+Customer Database,Service Admin,9,4,9,22,Phase 1,YES,Essential data management
+Payment Gateway,Service Admin,10,8,10,28,Phase 1,YES,Revenue collection
+Invoice Generation,Service Admin,9,5,9,23,Phase 1,YES,Legal requirement
+Customer Portal - Browsing,Customer,10,6,10,26,Phase 1,YES,Primary user entry point
+Online Booking,Customer,10,7,10,27,Phase 1,YES,Core customer function
+Email Notifications,Notifications,8,4,9,21,Phase 1,YES,User communication
+Basic Reporting,Service Admin,7,5,8,20,Phase 1,YES,Business insights
+Employee Management,Service Admin,8,6,8,22,Phase 1,YES,Multi-user access
+Company Profile,Service Admin,7,3,7,17,Phase 1,YES,Branding and setup
+Subscription Management,Super Admin,9,6,7,22,Phase 1,YES,Revenue model
+Check-out Workflow,Service Admin,9,7,9,25,Phase 2,NO,Operational efficiency
+Check-in Workflow,Service Admin,9,7,9,25,Phase 2,NO,Operational efficiency
+Deposit Management,Service Admin,8,6,8,22,Phase 2,NO,Financial control
+Pricing Rules Engine,Service Admin,8,8,9,25,Phase 2,NO,Revenue optimization
+Maintenance Scheduling,Service Admin,7,6,8,21,Phase 2,NO,Asset management
+Damage Reporting,Service Admin,8,5,8,21,Phase 2,NO,Liability tracking
+SMS Notifications,Notifications,7,5,8,20,Phase 2,NO,Enhanced communication
+Booking Modification,Customer,7,7,8,22,Phase 2,NO,Customer convenience
+Cancellation Management,Service Admin,8,6,8,22,Phase 2,NO,Policy enforcement
+E-Signature,Service Admin,7,7,7,21,Phase 2,NO,Digital workflow
+Document Upload,Customer,6,5,7,18,Phase 2,NO,Verification improvement
+Support Tickets,Customer,6,6,7,19,Phase 2,NO,Customer service
+Rating & Reviews,Customer,5,5,6,16,Phase 2,NO,Social proof
+Advanced Analytics,Service Admin,7,7,7,21,Phase 2,NO,Business intelligence
+Custom Forms,Service Admin,5,7,6,18,Phase 2,NO,Customization
+Expense Tracking,Service Admin,6,5,6,17,Phase 2,NO,Financial management
+GPS Tracking,Service Admin,6,9,7,22,Phase 3,NO,Premium feature
+Multi-location,Service Admin,6,8,6,20,Phase 3,NO,Scalability
+Corporate Customers,Service Admin,5,7,5,17,Phase 3,NO,B2B expansion
+Loyalty Program,Customer,4,6,5,15,Phase 3,NO,Retention tool
+Mobile Apps,Customer,7,9,8,24,Phase 3,NO,Mobile-first users
+Accounting Integration,Service Admin,5,8,6,19,Phase 3,NO,Workflow automation
+Public API,Integration,4,9,4,17,Phase 3,NO,Third-party integration
+AI Dynamic Pricing,Service Admin,6,10,7,23,Phase 3,NO,Advanced optimization
+Automated ID Verification,Customer,5,9,6,20,Phase 3,NO,Fraud prevention
+Multi-language,Enhancement,3,7,4,14,Phase 3,NO,Internationalization
+White-label,Super Admin,6,7,5,18,Phase 3,NO,Customization
