@@ -1,84 +1,222 @@
 ---
-title: Full Project Specification
+title: Project Specification
 description: Master specification document for the Rent-a-Wheel project.
 ---
 
+import { Aside, Badge } from '@astrojs/starlight/components';
+
 # Rent-a-Wheel Project Specification
 
-**Version:** 1.0
-**Status:** In Development
+**Version:** 1.1  
+**Status:** In Development  
 **Last Updated:** January 2026
 
 ## 1. Executive Summary
 
 **Rent-a-Wheel** is a comprehensive, multi-tenant Car Rental Software (CRS) platform designed to serve three distinct user groups:
 
-1.  **Super Admins**: Platform owners managing subscriptions and tenants.
-2.  **Service Admins (Tenants)**: Car rental business owners managing fleets, bookings, and customers.
-3.  **Customers**: End-users browsing and booking vehicles.
+1. **Super Admins**: Platform owners managing subscriptions and tenants
+2. **Service Admins (Tenants)**: Car rental business owners managing fleets, bookings, and customers
+3. **Customers**: End-users browsing and booking vehicles
 
 The system aims to modernize the car rental experience with a premium, responsive web interface, robust fleet management tools, and automated workflows for bookings and payments.
 
 ## 2. Technical Stack
 
-- **Frontend**: React, Next.js (Customer Portal), ShadcnUI (Admin Panels), TailwindCSS.
-- **Backend**: Node.js, Express (or NestJS), TypeScript.
-- **Database**: PostgreSQL with Multi-tenancy support.
-- **Infrastructure**: DigitalOcean/Hetzner, Docker, CI/CD pipelines.
-- **Documentation**: Astro Starlight.
+### Current Implementation
 
-## 3. Core Feature Areas
+| Component             | Technology                     | Status         |
+| --------------------- | ------------------------------ | -------------- |
+| **Monorepo**          | Turborepo + pnpm               | ✅ Complete    |
+| **Backend API**       | Express.js + TypeScript        | ✅ Complete    |
+| **CRM Frontend**      | Next.js 14+ (App Router)       | 🔨 In Progress |
+| **Admin Panel**       | React + Vite                   | 🔨 In Progress |
+| **Database**          | PostgreSQL + Prisma ORM        | ✅ Complete    |
+| **Authentication**    | JWT + Passkey (WebAuthn)       | ✅ Complete    |
+| **Authorization**     | Hybrid RBAC + ABAC             | ✅ Complete    |
+| **API Documentation** | OpenAPI + Swagger UI           | ✅ Complete    |
+| **API Client**        | Orval (generated from OpenAPI) | ✅ Complete    |
+| **Documentation**     | Astro Starlight                | ✅ Complete    |
+| **Testing**           | Vitest + Playwright            | 🔨 In Progress |
 
-### Phase 1: The Working System (Core)
+### Planned Integrations
 
-The foundation of the platform, focusing on enabling a rental business to operate manually and customers to book basic rentals.
+| Integration     | Provider         | Phase         |
+| --------------- | ---------------- | ------------- |
+| Payment Gateway | Cashfree         | Phase 1       |
+| File Storage    | AWS S3           | Phase 1       |
+| Email Service   | AWS SES / Resend | Phase 1       |
+| Monitoring      | Sentry           | ✅ Integrated |
+| Background Jobs | Kafka            | Phase 2       |
+| SMS             | Twilio           | Phase 2       |
 
-- **Fleet Management**: CRUD operations for vehicles, detailed descriptions, and image galleries.
-- **Booking Engine**: Real-time availability checks, date selection, and reservation creation.
-- **Payments**: Stripe integration for deposits, payments, and invoice generation.
-- **Dashboards**:
-  - _Service Admin_: Calendar view of availability, manual check-in/out, customer CRM.
-  - _Customer_: Search inventory, book cars, view booking status.
+## 3. Architecture Summary
+
+### API Architecture
+
+The backend follows a **modular NestJS-like architecture**:
+
+```
+apps/api/src/
+├── modules/          # Feature modules
+│   ├── auth/         # Authentication
+│   ├── customers/    # Customer CRM
+│   ├── vehicles/     # Fleet management
+│   ├── bookings/     # Reservations
+│   └── tenants/      # Multi-tenant management
+├── common/           # Shared utilities
+│   ├── dto/          # Data transfer objects
+│   ├── exceptions/   # Custom exceptions
+│   ├── filters/      # Exception filters
+│   └── guards/       # Auth guards
+└── infrastructure/   # Database & external services
+```
+
+### Shared Packages
+
+| Package                    | Purpose                                    |
+| -------------------------- | ------------------------------------------ |
+| `@rent-a-wheel/database`   | Prisma schema and generated client         |
+| `@rent-a-wheel/auth`       | JWT, password hashing, RBAC/ABAC utilities |
+| `@rent-a-wheel/api-client` | Generated TypeScript API client            |
+| `@rent-a-wheel/api-spec`   | OpenAPI specification                      |
+| `@rent-a-wheel/ui`         | Shared UI components (planned)             |
+
+## 4. Core Feature Areas
+
+### Phase 1: The Working System (Core) <Badge text="Current" variant="tip" />
+
+The foundation of the platform, focusing on enabling a rental business to operate.
+
+#### Implemented ✅
+
+- **Multi-tenancy**: Complete tenant isolation with subdomain routing
+- **Authentication**: JWT + Passkey authentication with password strength validation
+- **Authorization**: Hybrid RBAC + ABAC access control
+- **Customer Management**: Full CRUD with lead scoring and tagging
+- **Fleet Management**: Vehicle CRUD with status tracking
+- **Booking Management**: Reservation creation with pricing calculation
+- **API Infrastructure**: Rate limiting, CORS, CSRF, Helmet security
+
+#### In Progress 🔨
+
+- **Payment Gateway Integration**: Cashfree integration for deposits and payments
+- **Availability Calendar**: Real-time vehicle availability view
+- **Invoice Generation**: Auto-generated invoices for bookings
+- **CRM Dashboard UI**: Service admin dashboard
+- **Admin Dashboard UI**: Super admin panel
+
+#### Planned 📋
+
+- **Customer Portal**: Public-facing booking website
+- **Email Notifications**: Booking confirmations, reminders
+- **Agreement Templates**: Digital rental contracts
 
 ### Phase 2: Enhanced Operations
 
-Focuses on automation, rule-based logic, and operational efficiency.
+Focuses on automation and operational efficiency.
 
-- **Advanced Pricing**: Seasonal rates, weekend adjustments, and dynamic pricing rules.
-- **Workflow Automation**: Digital check-in/out forms with photo upload for damages.
-- **Notifications**: Automated SMS/Email reminders for pickups and returns.
-- **Reporting**: Financial reports (Profit/Loss), fleet utilization, and customer analytics.
+- **Advanced Pricing**: Seasonal rates, dynamic pricing rules
+- **Check-in/Check-out Workflows**: Digital forms with photo upload
+- **Maintenance Scheduling**: Service tracking and reminders
+- **SMS Notifications**: Twilio integration
+- **Advanced Reports**: Revenue, utilization analytics
 
 ### Phase 3: Scale & Intelligence
 
-Focuses on scaling, mobile access, and AI-driven optimizations.
+Focuses on scaling and AI-driven features.
 
-- **Mobile Apps**: Native iOS and Android apps for customers.
-- **Integration**: Accounting software connectivity (QuickBooks/Xero) and Public API.
-- **AI/ML**: Dynamic pricing algorithms and automated ID verification (OCR/Face Match).
+- **Mobile Apps**: Native iOS and Android
+- **Accounting Integration**: QuickBooks/Xero
+- **Public API**: REST API for third-party integrations
+- **AI/ML**: Dynamic pricing, automated ID verification
 
-## 4. Data Architecture
+## 5. Data Architecture
 
-The database is designed with **Multi-Tenancy** at its core. Every major entity allows for strict data isolation between rental businesses.
+The database uses PostgreSQL with Prisma ORM, designed with multi-tenancy at its core.
 
 ### Key Entities
 
-- **Tenants**: Service admin accounts with subscription details.
-- **Users**: Unified table for all roles (Super Admin, Service Admin, Staff, Customer).
-- **Vehicles**: Detailed inventory with status tracking (Available, Maintenance, Booked).
-- **Bookings**: Central reservation records linking Customers, Vehicles, and Payments.
-- **Agreements**: Digital contracts and templates.
+| Entity           | Purpose                                   |
+| ---------------- | ----------------------------------------- |
+| **Tenant**       | Rental business account with subscription |
+| **User**         | Unified table for all user roles          |
+| **Customer**     | CRM records with lead scoring             |
+| **Vehicle**      | Fleet inventory with status tracking      |
+| **Booking**      | Reservations linking customer, vehicle    |
+| **Subscription** | Billing and plan limits                   |
+| **Form**         | Custom form builder                       |
+| **AuditLog**     | Action tracking for compliance            |
 
-## 5. Development Roadmap
+See [Database Schema](/technical/database) for complete documentation.
 
-- **Sprint 0-6**: Infrastructure setup, Auth, Core Admin features.
-- **Sprint 7-9**: Customer Portal and Notifications.
-- **Sprint 10-11**: Testing, Beta Launch, and Deployment.
-- **Sprint 12-19**: Phase 2 features (Pricing, Inspections, Reports).
-- **Sprint 20+**: Phase 3 features (Mobile, AI, Integrations).
+## 6. Security Features
 
-## 6. Budget & Planning
+### Implemented
 
-- **Tracking**: Detailed weekly tracking of Velocity and Story Points.
-- **Cost Management**: Monthly operational cost tracking against budget caps.
-- **Risk Mitigation**: Proactive identification of technical dependencies (e.g., Payment Gateways, Email Providers).
+| Feature          | Implementation              |
+| ---------------- | --------------------------- |
+| Password Hashing | bcrypt with cost factor 10  |
+| JWT Tokens       | 7-day expiry, RS256 signing |
+| CSRF Protection  | Token-based for mutations   |
+| Rate Limiting    | 100 requests / 15 minutes   |
+| Security Headers | Helmet (CSP, HSTS, etc.)    |
+| Tenant Isolation | Row-level filtering         |
+| RBAC + ABAC      | Hybrid access control       |
+
+## 7. Development Roadmap
+
+<Aside>
+  See [Sprint Plan](/planning/sprint-plan) for detailed weekly breakdown.
+</Aside>
+
+### Sprint 0-6: Infrastructure & Core Admin
+
+- Project setup and database design ✅
+- Authentication and multi-tenancy ✅
+- API modules (customers, vehicles, bookings) ✅
+- Service Admin dashboard UI 🔨
+
+### Sprint 7-9: Customer Portal & Notifications
+
+- Customer-facing website
+- Booking flow
+- Email notifications
+
+### Sprint 10-11: Testing & Launch
+
+- Unit and integration testing
+- Production deployment
+- Documentation
+
+### Sprint 12-19: Phase 2 Features
+
+- Advanced pricing engine
+- Check-in/out workflows
+- SMS notifications
+- Analytics dashboard
+
+### Sprint 20+: Phase 3 Features
+
+- Mobile applications
+- AI/ML features
+- Third-party integrations
+
+## 8. Budget & Planning
+
+See [Budget & Costs](/product/budget) for detailed cost tracking.
+
+### Key Metrics
+
+- **Story Points per Sprint**: 10-15 (target)
+- **Sprint Duration**: 1 week
+- **Phase 1 Target**: 24 weeks
+- **Monthly Infrastructure**: ~$61/month
+
+## 9. Related Documentation
+
+- [Getting Started](/guides/getting-started) - Setup guide
+- [Architecture Overview](/technical/architecture) - Technical design
+- [Database Schema](/technical/database) - Data model
+- [API Reference](/technical/api) - Endpoint documentation
+- [Authentication](/technical/auth) - Auth system details

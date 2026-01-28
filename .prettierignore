@@ -1,0 +1,58 @@
+
+# Dependencies
+node_modules
+pnpm-lock.yaml
+
+# Build outputs
+dist
+build
+.next
+out
+.turbo
+
+# Generated files
+.generated
+generated
+orval.config.ts
+prisma/migrations
+
+# IDE and OS files
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Coverage
+coverage
+.nyc_output
+
+# Docker
+.dockerignore
+
+# Test outputs
+.pytest_cache
+cypress/screenshots
+cypress/videos
+
+# Package manager files
+.npmrc
+
+# Git
+.git
+.gitignore
+
+# Misc
+README.md
+LICENSE

@@ -7,46 +7,91 @@ hero:
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Project Overview
-      link: /reference/project_spec/
+    - text: Getting Started
+      link: /guides/getting-started/
       icon: right-arrow
-    - text: View Sprint Plan
-      link: /planning/sprint-plan/
+    - text: View Architecture
+      link: /technical/architecture/
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
 
-## Quick Access
+## 🚀 Quick Access
 
 <CardGrid stagger>
   <Card
-    title='Planning & Management'
-    icon='pencil'
+    title='Getting Started'
+    icon='rocket'
   >
-    Access the **[Sprint Plan](/planning/sprint-plan)**, **[Progress
-    Tracker](/planning/progress)**, and **[Estimation
-    Guide](/planning/estimation)**.
+    Quick start guide with **[Setup Instructions](/guides/getting-started)** and development workflow.
   </Card>
   <Card
     title='Technical Architecture'
     icon='setting'
   >
-    Review the **[Database Schema](/technical/database)** and **[Technical
-    Risks](/technical/risks)**.
+    Explore the **[Architecture Overview](/technical/architecture)**, **[Database Schema](/technical/database)**, and **[API Reference](/technical/api)**.
+  </Card>
+  <Card
+    title='Project Planning'
+    icon='pencil'
+  >
+    Access the **[Sprint Plan](/planning/sprint-plan)**, **[Progress Tracker](/planning/progress)**, and **[Estimation Guide](/planning/estimation)**.
   </Card>
   <Card
     title='Product Features'
-    icon='rocket'
-  >
-    Explore the **[Feature Priority Matrix](/product/features)** and **[Budget
-    Tracking](/product/budget)**.
-  </Card>
-  <Card
-    title='Project Spec'
     icon='open-book'
   >
-    Read the full **[Project Specification](/reference/project_spec)**.
+    Review the **[Feature Priority Matrix](/product/features)** and **[Budget Tracking](/product/budget)**.
   </Card>
 </CardGrid>
+
+## 📊 Project Status
+
+<CardGrid>
+  <Card title="Current Phase" icon="star">
+    **Sprint 0** - Infrastructure & Setup
+  </Card>
+  <Card title="Tech Stack" icon="laptop">
+    Express.js + Next.js + PostgreSQL
+  </Card>
+  <Card title="Architecture" icon="puzzle">
+    NestJS-like Modular Structure + CQRS
+  </Card>
+</CardGrid>
+
+## 🏗️ What's Been Built
+
+The following core components are **implemented and functional**:
+
+| Component | Status | Description |
+|-----------|--------|-------------|
+| **Monorepo Setup** | ✅ Complete | Turborepo with pnpm workspace |
+| **API Server** | ✅ Complete | Express.js with modular NestJS-like architecture |
+| **Database Schema** | ✅ Complete | PostgreSQL with Prisma ORM |
+| **Authentication** | ✅ Complete | JWT + Passkey (WebAuthn) + Password auth |
+| **Authorization** | ✅ Complete | Hybrid RBAC + ABAC access control |
+| **Multi-tenancy** | ✅ Complete | Row-level tenant isolation |
+| **CRM App** | 🔨 In Progress | Next.js 14+ frontend |
+| **Admin Dashboard** | 🔨 In Progress | React + Vite super admin panel |
+
+## 📁 Project Structure
+
+```
+rent-a-wheel/
+├── apps/
+│   ├── api/          # Express.js backend API
+│   ├── crm/          # Next.js CRM application
+│   ├── admin/        # React super admin dashboard
+│   └── docs/         # Astro Starlight documentation
+├── packages/
+│   ├── database/     # Prisma schema and client
+│   ├── auth/         # Authentication utilities
+│   ├── api-client/   # Generated API client (Orval)
+│   ├── api-spec/     # OpenAPI specification
+│   ├── ui/           # Shared UI components
+│   ├── eslint-config/
+│   └── typescript-config/
+└── tests/            # E2E tests with Playwright
+```

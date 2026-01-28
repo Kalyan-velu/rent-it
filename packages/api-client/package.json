@@ -25,12 +25,12 @@
   },
   "dependencies": {
     "@rent-a-wheel/api-spec": "workspace:*",
-    "@tanstack/react-query": "^5.80.6",
-    "axios": "^1.9.0",
-    "zod": "^3.23.8"
+    "@tanstack/react-query": "catalog:",
+    "axios": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
-    "orval": "^8.1.0",
-    "typescript": "^5.9.3"
+    "orval": "catalog:",
+    "typescript": "catalog:"
   }
 }
