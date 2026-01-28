@@ -35,10 +35,14 @@ import type {
   ListCustomersParams,
   NotFoundErrorResponse,
   UnauthorizedErrorResponse
-} from '../../schemas';
+} from '../schemas';
 
-import { customInstance } from '../../../custom-instance';
+import { customInstance } from '../../custom-instance';
+import type { ErrorType , BodyType } from '../../custom-instance';
 
+
+
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 
@@ -85,6 +89,8 @@ export const listCustomers = async (params?: ListCustomersParams, options?: Requ
   {      
     ...options,
     method: 'GET'
+    
+    
   }
 );}
 
@@ -99,16 +105,16 @@ export const getListCustomersQueryKey = (params?: ListCustomersParams,) => {
     }
 
     
-export const getListCustomersQueryOptions = <TData = Awaited<ReturnType<typeof listCustomers>>, TError = UnauthorizedErrorResponse>(params?: ListCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listCustomers>>, TError, TData>>, }
+export const getListCustomersQueryOptions = <TData = Awaited<ReturnType<typeof listCustomers>>, TError = ErrorType<UnauthorizedErrorResponse>>(params?: ListCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listCustomers>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getListCustomersQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof listCustomers>>> = ({ signal }) => listCustomers(params, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listCustomers>>> = ({ signal }) => listCustomers(params, { signal, ...requestOptions });
 
       
 
@@ -118,39 +124,39 @@ const {query: queryOptions} = options ?? {};
 }
 
 export type ListCustomersQueryResult = NonNullable<Awaited<ReturnType<typeof listCustomers>>>
-export type ListCustomersQueryError = UnauthorizedErrorResponse
+export type ListCustomersQueryError = ErrorType<UnauthorizedErrorResponse>
 
 
-export function useListCustomers<TData = Awaited<ReturnType<typeof listCustomers>>, TError = UnauthorizedErrorResponse>(
+export function useListCustomers<TData = Awaited<ReturnType<typeof listCustomers>>, TError = ErrorType<UnauthorizedErrorResponse>>(
  params: undefined |  ListCustomersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listCustomers>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof listCustomers>>,
           TError,
           Awaited<ReturnType<typeof listCustomers>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListCustomers<TData = Awaited<ReturnType<typeof listCustomers>>, TError = UnauthorizedErrorResponse>(
+export function useListCustomers<TData = Awaited<ReturnType<typeof listCustomers>>, TError = ErrorType<UnauthorizedErrorResponse>>(
  params?: ListCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listCustomers>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof listCustomers>>,
           TError,
           Awaited<ReturnType<typeof listCustomers>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListCustomers<TData = Awaited<ReturnType<typeof listCustomers>>, TError = UnauthorizedErrorResponse>(
- params?: ListCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listCustomers>>, TError, TData>>, }
+export function useListCustomers<TData = Awaited<ReturnType<typeof listCustomers>>, TError = ErrorType<UnauthorizedErrorResponse>>(
+ params?: ListCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listCustomers>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary List customers
  */
 
-export function useListCustomers<TData = Awaited<ReturnType<typeof listCustomers>>, TError = UnauthorizedErrorResponse>(
- params?: ListCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listCustomers>>, TError, TData>>, }
+export function useListCustomers<TData = Awaited<ReturnType<typeof listCustomers>>, TError = ErrorType<UnauthorizedErrorResponse>>(
+ params?: ListCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listCustomers>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -214,24 +220,24 @@ export const createCustomer = async (customerCreateInput: CustomerCreateInput, o
 
 
 
-export const getCreateCustomerMutationOptions = <TError = BadRequestErrorResponse | UnauthorizedErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createCustomer>>, TError,{data: CustomerCreateInput}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof createCustomer>>, TError,{data: CustomerCreateInput}, TContext> => {
+export const getCreateCustomerMutationOptions = <TError = ErrorType<BadRequestErrorResponse | UnauthorizedErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createCustomer>>, TError,{data: BodyType<CustomerCreateInput>}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationOptions<Awaited<ReturnType<typeof createCustomer>>, TError,{data: BodyType<CustomerCreateInput>}, TContext> => {
 
 const mutationKey = ['createCustomer'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createCustomer>>, {data: CustomerCreateInput}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createCustomer>>, {data: BodyType<CustomerCreateInput>}> = (props) => {
           const {data} = props ?? {};
 
-          return  createCustomer(data,)
+          return  createCustomer(data,requestOptions)
         }
 
 
@@ -242,18 +248,18 @@ const {mutation: mutationOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CreateCustomerMutationResult = NonNullable<Awaited<ReturnType<typeof createCustomer>>>
-    export type CreateCustomerMutationBody = CustomerCreateInput
-    export type CreateCustomerMutationError = BadRequestErrorResponse | UnauthorizedErrorResponse
+    export type CreateCustomerMutationBody = BodyType<CustomerCreateInput>
+    export type CreateCustomerMutationError = ErrorType<BadRequestErrorResponse | UnauthorizedErrorResponse>
 
     /**
  * @summary Create customer
  */
-export const useCreateCustomer = <TError = BadRequestErrorResponse | UnauthorizedErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createCustomer>>, TError,{data: CustomerCreateInput}, TContext>, }
+export const useCreateCustomer = <TError = ErrorType<BadRequestErrorResponse | UnauthorizedErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createCustomer>>, TError,{data: BodyType<CustomerCreateInput>}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof createCustomer>>,
         TError,
-        {data: CustomerCreateInput},
+        {data: BodyType<CustomerCreateInput>},
         TContext
       > => {
       return useMutation(getCreateCustomerMutationOptions(options), queryClient);
@@ -310,16 +316,16 @@ export const getGetCustomerQueryKey = (id: string,) => {
     }
 
     
-export const getGetCustomerQueryOptions = <TData = Awaited<ReturnType<typeof getCustomer>>, TError = NotFoundErrorResponse>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomer>>, TError, TData>>, }
+export const getGetCustomerQueryOptions = <TData = Awaited<ReturnType<typeof getCustomer>>, TError = ErrorType<NotFoundErrorResponse>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomer>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetCustomerQueryKey(id);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getCustomer>>> = ({ signal }) => getCustomer(id, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getCustomer>>> = ({ signal }) => getCustomer(id, { signal, ...requestOptions });
 
       
 
@@ -329,39 +335,39 @@ const {query: queryOptions} = options ?? {};
 }
 
 export type GetCustomerQueryResult = NonNullable<Awaited<ReturnType<typeof getCustomer>>>
-export type GetCustomerQueryError = NotFoundErrorResponse
+export type GetCustomerQueryError = ErrorType<NotFoundErrorResponse>
 
 
-export function useGetCustomer<TData = Awaited<ReturnType<typeof getCustomer>>, TError = NotFoundErrorResponse>(
+export function useGetCustomer<TData = Awaited<ReturnType<typeof getCustomer>>, TError = ErrorType<NotFoundErrorResponse>>(
  id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomer>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getCustomer>>,
           TError,
           Awaited<ReturnType<typeof getCustomer>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetCustomer<TData = Awaited<ReturnType<typeof getCustomer>>, TError = NotFoundErrorResponse>(
+export function useGetCustomer<TData = Awaited<ReturnType<typeof getCustomer>>, TError = ErrorType<NotFoundErrorResponse>>(
  id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomer>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getCustomer>>,
           TError,
           Awaited<ReturnType<typeof getCustomer>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetCustomer<TData = Awaited<ReturnType<typeof getCustomer>>, TError = NotFoundErrorResponse>(
- id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomer>>, TError, TData>>, }
+export function useGetCustomer<TData = Awaited<ReturnType<typeof getCustomer>>, TError = ErrorType<NotFoundErrorResponse>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomer>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get customer by id
  */
 
-export function useGetCustomer<TData = Awaited<ReturnType<typeof getCustomer>>, TError = NotFoundErrorResponse>(
- id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomer>>, TError, TData>>, }
+export function useGetCustomer<TData = Awaited<ReturnType<typeof getCustomer>>, TError = ErrorType<NotFoundErrorResponse>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomer>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -426,24 +432,24 @@ export const updateCustomer = async (id: string,
 
 
 
-export const getUpdateCustomerMutationOptions = <TError = BadRequestErrorResponse | NotFoundErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateCustomer>>, TError,{id: string;data: CustomerUpdateInput}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof updateCustomer>>, TError,{id: string;data: CustomerUpdateInput}, TContext> => {
+export const getUpdateCustomerMutationOptions = <TError = ErrorType<BadRequestErrorResponse | NotFoundErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateCustomer>>, TError,{id: string;data: BodyType<CustomerUpdateInput>}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationOptions<Awaited<ReturnType<typeof updateCustomer>>, TError,{id: string;data: BodyType<CustomerUpdateInput>}, TContext> => {
 
 const mutationKey = ['updateCustomer'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateCustomer>>, {id: string;data: CustomerUpdateInput}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateCustomer>>, {id: string;data: BodyType<CustomerUpdateInput>}> = (props) => {
           const {id,data} = props ?? {};
 
-          return  updateCustomer(id,data,)
+          return  updateCustomer(id,data,requestOptions)
         }
 
 
@@ -454,18 +460,18 @@ const {mutation: mutationOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type UpdateCustomerMutationResult = NonNullable<Awaited<ReturnType<typeof updateCustomer>>>
-    export type UpdateCustomerMutationBody = CustomerUpdateInput
-    export type UpdateCustomerMutationError = BadRequestErrorResponse | NotFoundErrorResponse
+    export type UpdateCustomerMutationBody = BodyType<CustomerUpdateInput>
+    export type UpdateCustomerMutationError = ErrorType<BadRequestErrorResponse | NotFoundErrorResponse>
 
     /**
  * @summary Update customer by id
  */
-export const useUpdateCustomer = <TError = BadRequestErrorResponse | NotFoundErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateCustomer>>, TError,{id: string;data: CustomerUpdateInput}, TContext>, }
+export const useUpdateCustomer = <TError = ErrorType<BadRequestErrorResponse | NotFoundErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateCustomer>>, TError,{id: string;data: BodyType<CustomerUpdateInput>}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateCustomer>>,
         TError,
-        {id: string;data: CustomerUpdateInput},
+        {id: string;data: BodyType<CustomerUpdateInput>},
         TContext
       > => {
       return useMutation(getUpdateCustomerMutationOptions(options), queryClient);
@@ -514,16 +520,16 @@ export const deleteCustomer = async (id: string, options?: RequestInit): Promise
 
 
 
-export const getDeleteCustomerMutationOptions = <TError = NotFoundErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteCustomer>>, TError,{id: string}, TContext>, }
+export const getDeleteCustomerMutationOptions = <TError = ErrorType<NotFoundErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteCustomer>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteCustomer>>, TError,{id: string}, TContext> => {
 
 const mutationKey = ['deleteCustomer'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
       
 
@@ -531,7 +537,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteCustomer>>, {id: string}> = (props) => {
           const {id} = props ?? {};
 
-          return  deleteCustomer(id,)
+          return  deleteCustomer(id,requestOptions)
         }
 
 
@@ -543,13 +549,13 @@ const {mutation: mutationOptions} = options ?
 
     export type DeleteCustomerMutationResult = NonNullable<Awaited<ReturnType<typeof deleteCustomer>>>
     
-    export type DeleteCustomerMutationError = NotFoundErrorResponse
+    export type DeleteCustomerMutationError = ErrorType<NotFoundErrorResponse>
 
     /**
  * @summary Delete customer by id
  */
-export const useDeleteCustomer = <TError = NotFoundErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteCustomer>>, TError,{id: string}, TContext>, }
+export const useDeleteCustomer = <TError = ErrorType<NotFoundErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteCustomer>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteCustomer>>,
         TError,

@@ -21,31 +21,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba53a1a1-28ca-4c71-a664-75ab8505f60f" name="Changes" comment="feat: add project specification and dependency updates&#10;&#10;- Created `PROJECT_SPEC.md` outlining system architecture, core features, and development roadmap for the Rent-a-Wheel platform.&#10;- Updated `docker-compose.yml` to modify `Postgres` and `Redis` versions.&#10;- Adjusted `pnpm-lock.yaml` to reflect dependency changes and alignment with new library requirements (e.g., Astro, Sharp, and plugin updates).">
-      <change afterPath="$PROJECT_DIR$/.prettierignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PROJECT_SPEC.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/admin/.prettierrc" afterDir="false" />
+    <list default="true" id="ba53a1a1-28ca-4c71-a664-75ab8505f60f" name="Changes" comment="feat: revamp documentation structure and add initial platform guides&#10;&#10;- Removed outdated example documents from `guides` and `reference` directories.&#10;- Added comprehensive `Getting Started` guide for local setup and environment configuration of the Rent-a-Wheel platform.&#10;- Introduced new technical documentation: `API Reference`, `Architecture Overview`, and `Authentication System`.&#10;- Updated IDE settings to include CSV file separator definitions for improved file management.&#10;- Enhanced project documentation to outline setup, architecture, and API usage.">
+      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/api-client/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/admin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/astro.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/astro.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/src/content/docs/guides/example.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/src/content/docs/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/src/content/docs/index.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/src/content/docs/product/features.md" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/src/content/docs/product/features.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/src/content/docs/reference/example.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/src/content/docs/reference/project_spec.md" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/src/content/docs/reference/project_spec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/src/content/docs/technical/database.md" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/src/content/docs/technical/database.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/src/content/docs/technical/risks.md" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/src/content/docs/technical/risks.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/admin/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/crm/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/crm/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/orval.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/orval.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/api-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/eslint-config/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/eslint-config/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-workspace.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-workspace.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/custom-instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/src/custom-instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/endpoints/customers/customers.msw.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/endpoints/customers/customers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/endpoints/customers/customers.zod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/badRequestErrorResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customerCreateInput.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customerUpdateInput.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customersResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/error.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/listCustomersParams.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/notFoundErrorResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/pagination.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/unauthorizedErrorResponse.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/typescript-config/nextjs.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/typescript-config/nextjs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,15 +67,15 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="298" />
+    <option name="cachedIndexableFilesCount" value="301" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="tsconfig.json" />
         <option value="package.json" />
         <option value="TypeScript File" />
+        <option value="tsconfig.json" />
       </list>
     </option>
   </component>
@@ -189,11 +191,13 @@
     "npm.admin > dev.executor": "Run",
     "npm.api > dev.executor": "Run",
     "npm.api-client > generate:watch.executor": "Run",
+    "npm.crm > build.executor": "Run",
     "npm.crm > dev.executor": "Run",
+    "npm.crm > start.executor": "Run",
     "npm.dev.executor": "Run",
     "npm.docs > dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "E:\\rent-a-wheel\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "settings.editor.selected.configurable": "settings.typescriptcompiler",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "E:\\rent-a-wheel\\node_modules\\typescript\\lib",
     "typescript.add.unambiguous.imports.on.the.fly": "true",
@@ -230,23 +234,10 @@
       <recent name="C:\Users\borah\Projects\rent-a-wheel\packages\api-client" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml.redis: Compose Deployment">
+  <component name="RunManager" selected="npm.crm &gt; start">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="postgres" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
       </deployment>
       <method v="2" />
     </configuration>
@@ -263,11 +254,31 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="api-client &gt; generate:watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/packages/api-client/package.json" />
+    <configuration name="crm &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/apps/crm/package.json" />
       <command value="run" />
       <scripts>
-        <script value="generate:watch" />
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="crm &gt; dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/apps/crm/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="crm &gt; start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/apps/crm/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -283,23 +294,13 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="docs &gt; dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/apps/docs/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.crm &gt; start" />
+        <item itemvalue="npm.crm &gt; build" />
+        <item itemvalue="npm.crm &gt; dev" />
         <item itemvalue="Docker.docker-compose.yml.redis: Compose Deployment" />
         <item itemvalue="npm.dev" />
-        <item itemvalue="npm.docs &gt; dev" />
-        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
-        <item itemvalue="npm.api-client &gt; generate:watch" />
       </list>
     </recent_temporary>
   </component>
@@ -327,7 +328,7 @@
       <workItem from="1769534664647" duration="115000" />
       <workItem from="1769534880578" duration="12074000" />
       <workItem from="1769615557593" duration="7197000" />
-      <workItem from="1769632031872" duration="3073000" />
+      <workItem from="1769632031872" duration="9791000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add Playwright, Docker setup, and environment configuration&#10;&#10;- Introduced Playwright testing configuration (`playwright.config.ts`) for E2E testing.&#10;- Added Docker Compose setup (`docker-compose.yml`) for PostgreSQL, Redis, Kafka, API, and front-end applications.&#10;- Included `.idea` project files for development environment management.&#10;- Documented Docker usage and commands in `DOCKER.md`.">
       <option name="closed" value="true" />
@@ -553,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769630292101</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: revamp documentation structure and add initial platform guides&#10;&#10;- Removed outdated example documents from `guides` and `reference` directories.&#10;- Added comprehensive `Getting Started` guide for local setup and environment configuration of the Rent-a-Wheel platform.&#10;- Introduced new technical documentation: `API Reference`, `Architecture Overview`, and `Authentication System`.&#10;- Updated IDE settings to include CSV file separator definitions for improved file management.&#10;- Enhanced project documentation to outline setup, architecture, and API usage.">
+      <option name="closed" value="true" />
+      <created>1769635438182</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1769635438182</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +598,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: initialize multi-tenant admin app and authentication module&#10;&#10;- Introduced foundational structure and configuration for the multi-tenant admin app.&#10;- Added base Vite setup, Nginx configuration, and TailwindCSS for front-end styling.&#10;- Implemented React with Zustand for global state and TanStack Query for API calls.&#10;- Created new `auth` package with JWT, password management, and role-based access control (RBAC) logic.&#10;- Integrated passkey support using @simplewebauthn for authentication enhancements." />
     <MESSAGE value="feat: implement authentication and validation middleware for user management" />
     <MESSAGE value="feat: add initial setup for customer management with API client and hooks" />
     <MESSAGE value="chore: remove `web` app and its dependencies&#10;&#10;- Deleted the `apps/web` directory, including package configuration, source files, styles, and static assets.&#10;- Removed related TypeScript, ESLint, and Next.js configuration files.&#10;- Cleared associated fonts, SVGs, and `README.md` specific to the `web` application.&#10;- Updated the monorepo structure to reflect the removal of the `web` application." />
@@ -614,7 +622,8 @@
     <MESSAGE value="[#0]" />
     <MESSAGE value="feat: add initial documentation and assets for CRS project setup&#10;&#10;- Added recommended VS Code settings for Astro development support.&#10;- Introduced project-specific launch configuration for easier local development.&#10;- Included initial assets such as `favicon.svg` and documentation files for sprint planning, cost tracking, and feature prioritization.&#10;- Added database schema blueprint and feature priority matrix for architecture and planning references.&#10;- Integrated initial CSV files to streamline sprint planning and documentation import into Google Sheets." />
     <MESSAGE value="feat: add project specification and dependency updates&#10;&#10;- Created `PROJECT_SPEC.md` outlining system architecture, core features, and development roadmap for the Rent-a-Wheel platform.&#10;- Updated `docker-compose.yml` to modify `Postgres` and `Redis` versions.&#10;- Adjusted `pnpm-lock.yaml` to reflect dependency changes and alignment with new library requirements (e.g., Astro, Sharp, and plugin updates)." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add project specification and dependency updates&#10;&#10;- Created `PROJECT_SPEC.md` outlining system architecture, core features, and development roadmap for the Rent-a-Wheel platform.&#10;- Updated `docker-compose.yml` to modify `Postgres` and `Redis` versions.&#10;- Adjusted `pnpm-lock.yaml` to reflect dependency changes and alignment with new library requirements (e.g., Astro, Sharp, and plugin updates)." />
+    <MESSAGE value="feat: revamp documentation structure and add initial platform guides&#10;&#10;- Removed outdated example documents from `guides` and `reference` directories.&#10;- Added comprehensive `Getting Started` guide for local setup and environment configuration of the Rent-a-Wheel platform.&#10;- Introduced new technical documentation: `API Reference`, `Architecture Overview`, and `Authentication System`.&#10;- Updated IDE settings to include CSV file separator definitions for improved file management.&#10;- Enhanced project documentation to outline setup, architecture, and API usage." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: revamp documentation structure and add initial platform guides&#10;&#10;- Removed outdated example documents from `guides` and `reference` directories.&#10;- Added comprehensive `Getting Started` guide for local setup and environment configuration of the Rent-a-Wheel platform.&#10;- Introduced new technical documentation: `API Reference`, `Architecture Overview`, and `Authentication System`.&#10;- Updated IDE settings to include CSV file separator definitions for improved file management.&#10;- Enhanced project documentation to outline setup, architecture, and API usage." />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

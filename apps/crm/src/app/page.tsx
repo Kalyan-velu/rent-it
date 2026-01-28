@@ -1,55 +1,59 @@
 'use client'
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@rent-a-wheel/ui/button";
-import styles from "./page.module.css";
-import { useListCustomers, useGetCustomer } from '@rent-a-wheel/api-client';
+import Image, { type ImageProps } from 'next/image'
+import { useListCustomers, useGetCustomer } from '@rent-a-wheel/api-client/endpoints/customers.ts'
 
 export function CustomersList() {
   // List all customers
-  const { data, isLoading, error } = useListCustomers();
-  
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  
+  const { data, isLoading, error } = useListCustomers()
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error.message}</div>
+  if (data?.status !== 200) return <div>Error: {data?.status}</div>
+
+  const customers = 'customers' in data.data ? data.data.customers : []
+
   return (
     <ul>
-      {data?.data?.customers.map((customer) => (
+      {customers.map((customer: any) => (
         <li key={customer.id}>{customer.name}</li>
       ))}
     </ul>
-  );
+  )
 }
 
 export function CustomerDetail({ customerId }: { customerId: string }) {
   // Get a specific customer
-  const { data, isLoading, error } = useGetCustomer(customerId);
-  
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  
-  return <div>{data?.data?.name}</div>;
+  const { data, isLoading, error } = useGetCustomer(customerId)
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error.message}</div>
+  if (data?.status !== 200) return <div>Error: {data?.status}</div>
+
+  const customer = 'name' in data.data ? data.data : null
+
+  return <div>{customer?.name}</div>
 }
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+type Props = Omit<ImageProps, 'src'> & {
+  srcLight: string
+  srcDark: string
+}
 
 const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+  const { srcLight, srcDark, ...rest } = props
 
-  
   return (
     <>
       <Image {...rest} src={srcLight} className="imgLight" />
       <Image {...rest} src={srcDark} className="imgDark" />
     </>
-  );
-};
+  )
+}
 
 export default function Home() {
-  return (<div>
+  return (
+    <div>
       <CustomersList />
     </div>
-  );
+  )
 }
