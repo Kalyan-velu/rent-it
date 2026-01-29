@@ -3,7 +3,7 @@ title: Architecture Overview
 description: Technical architecture of the Rent-a-Wheel platform, including API design, module structure, and patterns used.
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Badge } from '@astrojs/starlight/components';
 
 This document describes the technical architecture of the Rent-a-Wheel platform as currently implemented.
 
@@ -268,6 +268,18 @@ app.get('/health', (req, res) => {
   });
 });
 ```
+
+## CI/CD Pipeline <Badge text="Added in v1.1" variant="note" />
+
+The platform uses GitHub Actions for continuous integration, security auditing, and automated documentation management.
+
+### Workflows
+
+| Workflow | Trigger | Purpose |
+| --- | --- | --- |
+| **Security Audit** | Pull Request | Scans code changes for accidentally committed secrets using AI. |
+| **Code Review** | Pull Request | Provides automated code review and improvement suggestions using AI. |
+| **Sync Documentation** | Pull Request | Automatically reviews PR diffs and updates documentation to match code changes. |
 
 ## Next Steps
 

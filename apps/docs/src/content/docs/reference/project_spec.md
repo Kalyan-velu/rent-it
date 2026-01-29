@@ -37,6 +37,7 @@ The system aims to modernize the car rental experience with a premium, responsiv
 | **API Documentation** | OpenAPI + Swagger UI           | ✅ Complete    |
 | **API Client**        | Orval (generated from OpenAPI) | ✅ Complete    |
 | **Documentation**     | Astro Starlight                | ✅ Complete    |
+| **CI/CD Pipeline**   | GitHub Actions                 | ✅ Complete    |
 | **Testing**           | Vitest + Playwright            | 🔨 In Progress |
 
 ### Planned Integrations
@@ -163,6 +164,7 @@ See [Database Schema](/technical/database) for complete documentation.
 | Security Headers | Helmet (CSP, HSTS, etc.)    |
 | Tenant Isolation | Row-level filtering         |
 | RBAC + ABAC      | Hybrid access control       |
+| Secret Scanning  | GitHub Actions (Audit)      |
 
 ## 7. Development Roadmap
 
