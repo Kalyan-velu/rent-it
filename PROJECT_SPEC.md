@@ -29,6 +29,7 @@ The system aims to modernize the car rental experience with a premium, responsiv
 | Authorization  | Hybrid RBAC + ABAC       | ✅ Complete    |
 | API Docs       | OpenAPI + Swagger UI     | ✅ Complete    |
 | Documentation  | Astro Starlight          | ✅ Complete    |
+| CI/CD Pipeline | GitHub Actions           | ✅ Complete    |
 
 ### Planned Integrations
 

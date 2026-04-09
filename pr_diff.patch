@@ -1,0 +1,386 @@
+diff --git a/.github/workflows/audit-secrets.yml b/.github/workflows/audit-secrets.yml
+new file mode 100644
+index 0000000..abc4ac9
+--- /dev/null
++++ b/.github/workflows/audit-secrets.yml
+@@ -0,0 +1,75 @@
++name: Security Audit
++
++on:
++  pull_request:
++    types: [opened, synchronize]
++
++jobs:
++  audit:
++    runs-on: ubuntu-latest
++    permissions:
++      contents: read
++      pull-requests: write
++      issues: write
++    steps:
++      - uses: actions/checkout@v6.0.2
++        with:
++          fetch-depth: 2  # Need parent commit for diff
++
++      - uses: JetBrains/junie-github-action@v0
++        id: junie
++        with:
++          junie_api_key: ${{ secrets.JUNIE_API_KEY }}
++          # Enable silent mode to avoid GitHub comments and code changes
++          silent_mode: true
++          prompt: |
++            Scan git diff for accidentally committed secrets. Provide a structured report.
++
++            **Look for:**
++            - API keys (AWS, GCP, Azure, OpenAI, Stripe)
++            - Private keys (RSA, SSH, PGP headers)
++            - Passwords, auth tokens, JWT
++            - Database connection strings, OAuth secrets
++
++            **Patterns:**
++            - `password=`, `secret=`, `token=`, `api_key=`
++            - Long base64/hex strings (>20 chars)
++            - `https://user:pass@host`
++            - `-----BEGIN PRIVATE KEY-----`
++
++            **Ignore false positives:**
++            - Placeholders ("your-api-key-here", "example.com")
++            - Test fixtures with dummy data
++            - Encrypted values, public keys
++
++            **Report format:**
++            ## 🔐 Secret Scan Results
++
++            **Status:** SECRETS_FOUND or CLEAN
++
++            ### Issues Found:
++            [If secrets found, list each one:]
++            - **File:** path/file:line
++            - **Type:** API Key / Private Key / Password / etc.
++            - **Severity:** HIGH / MEDIUM
++            - **Pattern:** [show redacted pattern, e.g., "aws_access_key=AKIA..."]
++            - **Recommendation:** Remove from code, use GitHub Secrets
++
++            [If no secrets found:]
++            No secrets detected in this commit.
++
++            Procedure:
++            Use gh pr diff ${{ github.event.pull_request.head.ref }} to get a diff of the PR.
++
++            Only provide feedback without modifying files.
++
++      - name: Check results
++        if: steps.junie.outputs.junie_summary != ''
++        run: |
++          echo "${{ steps.junie.outputs.junie_summary }}"
++          # Fail if secrets were found
++          if echo "${{ steps.junie.outputs.junie_summary }}" | grep -q "SECRETS_FOUND"; then
++            echo "::error::Secrets detected in commit! Review the summary above."
++            exit 1
++          fi
++
+diff --git a/.github/workflows/code-review.yml b/.github/workflows/code-review.yml
+new file mode 100644
+index 0000000..daa6dd7
+--- /dev/null
++++ b/.github/workflows/code-review.yml
+@@ -0,0 +1,27 @@
++name: Code Review
++
++on:
++  pull_request:
++    types: [opened, synchronize]
++
++jobs:
++  review:
++    runs-on: ubuntu-latest
++    permissions:
++      contents: read
++      pull-requests: write
++      issues: write
++    steps:
++      - uses: actions/checkout@v6.0.2
++        with:
++          fetch-depth: 1
++
++      - uses: JetBrains/junie-github-action@v0
++        with:
++          junie_api_key: ${{ secrets.JUNIE_API_KEY }}
++          # Update the same comment on subsequent Junie runs instead of adding new comments
++          use_single_comment: true
++          # Alternatively, write your custom review instructions in the prompt field
++          # instead of using the built-in "code-review" value
++          prompt: "code-review"
++
+diff --git a/.github/workflows/sync-docs.yml b/.github/workflows/sync-docs.yml
+new file mode 100644
+index 0000000..e17ef5b
+--- /dev/null
++++ b/.github/workflows/sync-docs.yml
+@@ -0,0 +1,43 @@
++name: Sync Documentation
++
++on:
++  pull_request:
++    types: [closed]
++    branches:
++      - main
++
++jobs:
++  update-docs:
++    if: github.event.pull_request.merged == true
++    runs-on: ubuntu-latest
++    permissions:
++      contents: write
++      pull-requests: write
++    steps:
++      - uses: actions/checkout@v6.0.2
++        with:
++          fetch-depth: 1
++
++      - uses: JetBrains/junie-github-action@v0
++        with:
++          junie_api_key: ${{ secrets.JUNIE_API_KEY }}
++          create_new_branch_for_pr: true
++          prompt: |
++            Review pr diff and update documentation to match code changes.
++
++            **Check for outdated docs:**
++            - README.md examples using changed APIs
++            - API documentation (JSDoc, docstrings, OpenAPI)
++            - Configuration examples (if config changed)
++            - Migration guides (for breaking changes)
++
++            **Update only if needed:**
++            - Keep examples simple and runnable
++            - Show before/after for breaking changes
++            - Add "Added in vX.X" for new features
++            - Only modify documentation files (README.md, apps/docs/**)
++            - If nothing to update, don't make changes
++
++            Procedure:
++            Use gh pr diff ${{ github.event.pull_request.head.ref }} to get a diff of the PR.
++
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index a0b3462..5034100 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -21,33 +21,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ba53a1a1-28ca-4c71-a664-75ab8505f60f" name="Changes" comment="feat: revamp documentation structure and add initial platform guides&#10;&#10;- Removed outdated example documents from `guides` and `reference` directories.&#10;- Added comprehensive `Getting Started` guide for local setup and environment configuration of the Rent-a-Wheel platform.&#10;- Introduced new technical documentation: `API Reference`, `Architecture Overview`, and `Authentication System`.&#10;- Updated IDE settings to include CSV file separator definitions for improved file management.&#10;- Enhanced project documentation to outline setup, architecture, and API usage.">
+-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/packages/api-client/tsconfig.json" afterDir="false" />
++    <list default="true" id="ba53a1a1-28ca-4c71-a664-75ab8505f60f" name="Changes" comment="chore: remove auto-generated customer API code&#10;&#10;- Deleted all auto-generated files for the customer API, including endpoints, validation schemas, and TypeScript interfaces.&#10;- Removed `customers.msw.ts`, `customers.ts`, `customers.zod.ts`, and associated schema files.&#10;- Updated `tsconfig.json` and `package.json` to reflect changes.">
++      <change afterPath="$PROJECT_DIR$/.github/workflows/audit-secrets.yml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.github/workflows/code-review.yml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.github/workflows/sync-docs.yml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/apps/admin/.prettierrc" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/apps/crm/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/crm/src/app/page.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/orval.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/orval.config.ts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/package.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/custom-instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/api-client/src/custom-instance.ts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/endpoints/customers/customers.msw.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/endpoints/customers/customers.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/endpoints/customers/customers.zod.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/index.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/badRequestErrorResponse.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customer.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customerCreateInput.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customerUpdateInput.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/customersResponse.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/error.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/index.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/listCustomersParams.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/notFoundErrorResponse.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/pagination.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/api-client/src/generated/schemas/unauthorizedErrorResponse.ts" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/typescript-config/nextjs.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/typescript-config/nextjs.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -67,7 +45,7 @@
+     </persistenceIdMap>
+   </component>
+   <component name="EmbeddingIndexingInfo">
+-    <option name="cachedIndexableFilesCount" value="301" />
++    <option name="cachedIndexableFilesCount" value="302" />
+     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+   </component>
+   <component name="FileTemplateManagerImpl">
+@@ -76,6 +54,7 @@
+         <option value="package.json" />
+         <option value="TypeScript File" />
+         <option value="tsconfig.json" />
++        <option value="GitHub Workflow" />
+       </list>
+     </option>
+   </component>
+@@ -122,6 +101,16 @@
+   &quot;selectedUrlAndAccountId&quot;: {
+     &quot;url&quot;: &quot;git@github.com:Kalyan-velu/get-a-car.git&quot;,
+     &quot;accountId&quot;: &quot;16131886-2d02-4527-b951-20fbbee2571a&quot;
++  },
++  &quot;recentNewPullRequestHead&quot;: {
++    &quot;server&quot;: {
++      &quot;useHttp&quot;: false,
++      &quot;host&quot;: &quot;github.com&quot;,
++      &quot;port&quot;: null,
++      &quot;suffix&quot;: null
++    },
++    &quot;owner&quot;: &quot;Kalyan-velu&quot;,
++    &quot;repository&quot;: &quot;rent-it&quot;
+   }
+ }</component>
+   <component name="HttpClientEndpointsTabState">
+@@ -160,55 +149,55 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
+-    "Docker.docker-compose.yml.redis: Compose Deployment.executor": "Run",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "RunOnceActivity.MCP Project settings loaded": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+-    "git-widget-placeholder": "dev",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "javascript.nodejs.core.library.configured.version": "22.21.0",
+-    "javascript.nodejs.core.library.typings.version": "22.19.7",
+-    "javascript.preferred.runtime.type.id": "node",
+-    "junie.onboarding.icon.badge.shown": "true",
+-    "last_opened_file_path": "E:/rent-a-wheel",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.standard": "true",
+-    "node.js.detected.package.stylelint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.standard": "",
+-    "node.js.selected.package.stylelint": "",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "pnpm",
+-    "npm.admin > dev.executor": "Run",
+-    "npm.api > dev.executor": "Run",
+-    "npm.api-client > generate:watch.executor": "Run",
+-    "npm.crm > build.executor": "Run",
+-    "npm.crm > dev.executor": "Run",
+-    "npm.crm > start.executor": "Run",
+-    "npm.dev.executor": "Run",
+-    "npm.docs > dev.executor": "Run",
+-    "prettierjs.PrettierConfiguration.Package": "E:\\rent-a-wheel\\node_modules\\prettier",
+-    "settings.editor.selected.configurable": "settings.typescriptcompiler",
+-    "to.speed.mode.migration.done": "true",
+-    "ts.external.directory.path": "E:\\rent-a-wheel\\node_modules\\typescript\\lib",
+-    "typescript.add.unambiguous.imports.on.the.fly": "true",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;Docker.docker-compose.yml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
++    &quot;Docker.docker-compose.yml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
++    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.21.0&quot;,
++    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.19.7&quot;,
++    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
++    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;E:/rent-a-wheel&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
++    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
++    &quot;npm.admin &gt; dev.executor&quot;: &quot;Run&quot;,
++    &quot;npm.api &gt; dev.executor&quot;: &quot;Run&quot;,
++    &quot;npm.api-client &gt; generate:watch.executor&quot;: &quot;Run&quot;,
++    &quot;npm.crm &gt; build.executor&quot;: &quot;Run&quot;,
++    &quot;npm.crm &gt; dev.executor&quot;: &quot;Run&quot;,
++    &quot;npm.crm &gt; start.executor&quot;: &quot;Run&quot;,
++    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
++    &quot;npm.docs &gt; dev.executor&quot;: &quot;Run&quot;,
++    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;E:\\rent-a-wheel\\node_modules\\prettier&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;settings.typescriptcompiler&quot;,
++    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
++    &quot;ts.external.directory.path&quot;: &quot;E:\\rent-a-wheel\\node_modules\\typescript\\lib&quot;,
++    &quot;typescript.add.unambiguous.imports.on.the.fly&quot;: &quot;true&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   },
+-  "keyToStringList": {
+-    "DatabaseDriversLRU": [
+-      "postgresql"
++  &quot;keyToStringList&quot;: {
++    &quot;DatabaseDriversLRU&quot;: [
++      &quot;postgresql&quot;
+     ]
+   }
+-}]]></component>
++}</component>
+   <component name="ReactDesignerToolWindowState">
+     <option name="myId2Visible">
+       <map>
+@@ -328,7 +317,8 @@
+       <workItem from="1769534664647" duration="115000" />
+       <workItem from="1769534880578" duration="12074000" />
+       <workItem from="1769615557593" duration="7197000" />
+-      <workItem from="1769632031872" duration="9791000" />
++      <workItem from="1769632031872" duration="10224000" />
++      <workItem from="1769694025547" duration="987000" />
+     </task>
+     <task id="LOCAL-00001" summary="feat: add Playwright, Docker setup, and environment configuration&#10;&#10;- Introduced Playwright testing configuration (`playwright.config.ts`) for E2E testing.&#10;- Added Docker Compose setup (`docker-compose.yml`) for PostgreSQL, Redis, Kafka, API, and front-end applications.&#10;- Included `.idea` project files for development environment management.&#10;- Documented Docker usage and commands in `DOCKER.md`.">
+       <option name="closed" value="true" />
+@@ -562,7 +552,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1769635438182</updated>
+     </task>
+-    <option name="localTasksCounter" value="30" />
++    <task id="LOCAL-00030" summary="chore: remove auto-generated customer API code&#10;&#10;- Deleted all auto-generated files for the customer API, including endpoints, validation schemas, and TypeScript interfaces.&#10;- Removed `customers.msw.ts`, `customers.ts`, `customers.zod.ts`, and associated schema files.&#10;- Updated `tsconfig.json` and `package.json` to reflect changes.">
++      <option name="closed" value="true" />
++      <created>1769642327248</created>
++      <option name="number" value="00030" />
++      <option name="presentableId" value="LOCAL-00030" />
++      <option name="project" value="LOCAL" />
++      <updated>1769642327248</updated>
++    </task>
++    <option name="localTasksCounter" value="31" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -598,7 +596,6 @@
+     </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="feat: implement authentication and validation middleware for user management" />
+     <MESSAGE value="feat: add initial setup for customer management with API client and hooks" />
+     <MESSAGE value="chore: remove `web` app and its dependencies&#10;&#10;- Deleted the `apps/web` directory, including package configuration, source files, styles, and static assets.&#10;- Removed related TypeScript, ESLint, and Next.js configuration files.&#10;- Cleared associated fonts, SVGs, and `README.md` specific to the `web` application.&#10;- Updated the monorepo structure to reflect the removal of the `web` application." />
+     <MESSAGE value="feat: add tests, update dependencies, and improve environment setup&#10;&#10;- Added unit tests for components and hooks with Vitest and React Testing Library.&#10;- Implemented E2E tests for authentication and customer management using Playwright.&#10;- Introduced a testing setup file for reusable configurations and mocks.&#10;- Updated PostgreSQL version in Docker Compose to `18-alpine`.&#10;- Added `.idea` configurations for TypeScript settings and Git toolbox preferences." />
+@@ -623,7 +620,8 @@
+     <MESSAGE value="feat: add initial documentation and assets for CRS project setup&#10;&#10;- Added recommended VS Code settings for Astro development support.&#10;- Introduced project-specific launch configuration for easier local development.&#10;- Included initial assets such as `favicon.svg` and documentation files for sprint planning, cost tracking, and feature prioritization.&#10;- Added database schema blueprint and feature priority matrix for architecture and planning references.&#10;- Integrated initial CSV files to streamline sprint planning and documentation import into Google Sheets." />
+     <MESSAGE value="feat: add project specification and dependency updates&#10;&#10;- Created `PROJECT_SPEC.md` outlining system architecture, core features, and development roadmap for the Rent-a-Wheel platform.&#10;- Updated `docker-compose.yml` to modify `Postgres` and `Redis` versions.&#10;- Adjusted `pnpm-lock.yaml` to reflect dependency changes and alignment with new library requirements (e.g., Astro, Sharp, and plugin updates)." />
+     <MESSAGE value="feat: revamp documentation structure and add initial platform guides&#10;&#10;- Removed outdated example documents from `guides` and `reference` directories.&#10;- Added comprehensive `Getting Started` guide for local setup and environment configuration of the Rent-a-Wheel platform.&#10;- Introduced new technical documentation: `API Reference`, `Architecture Overview`, and `Authentication System`.&#10;- Updated IDE settings to include CSV file separator definitions for improved file management.&#10;- Enhanced project documentation to outline setup, architecture, and API usage." />
+-    <option name="LAST_COMMIT_MESSAGE" value="feat: revamp documentation structure and add initial platform guides&#10;&#10;- Removed outdated example documents from `guides` and `reference` directories.&#10;- Added comprehensive `Getting Started` guide for local setup and environment configuration of the Rent-a-Wheel platform.&#10;- Introduced new technical documentation: `API Reference`, `Architecture Overview`, and `Authentication System`.&#10;- Updated IDE settings to include CSV file separator definitions for improved file management.&#10;- Enhanced project documentation to outline setup, architecture, and API usage." />
++    <MESSAGE value="chore: remove auto-generated customer API code&#10;&#10;- Deleted all auto-generated files for the customer API, including endpoints, validation schemas, and TypeScript interfaces.&#10;- Removed `customers.msw.ts`, `customers.ts`, `customers.zod.ts`, and associated schema files.&#10;- Updated `tsconfig.json` and `package.json` to reflect changes." />
++    <option name="LAST_COMMIT_MESSAGE" value="chore: remove auto-generated customer API code&#10;&#10;- Deleted all auto-generated files for the customer API, including endpoints, validation schemas, and TypeScript interfaces.&#10;- Removed `customers.msw.ts`, `customers.ts`, `customers.zod.ts`, and associated schema files.&#10;- Updated `tsconfig.json` and `package.json` to reflect changes." />
+   </component>
+   <component name="github-copilot-workspace">
+     <instructionFileLocations>

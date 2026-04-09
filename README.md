@@ -187,6 +187,14 @@ pnpm test:watch
 pnpm test:e2e
 ```
 
+## 🤖 CI/CD
+
+The platform uses GitHub Actions to ensure code quality and security:
+
+- **Security Audit**: Scans for accidentally committed secrets.
+- **AI Code Review**: Provides automated feedback on pull requests.
+- **Documentation Sync**: Automatically keeps docs in sync with API and code changes.
+
 ## 🐳 Docker
 
 ```bash
