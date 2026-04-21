@@ -22,7 +22,7 @@
     "@dr.pogodin/csurf": "^1.16.8",
     "dotenv": "catalog:",
     "express": "^5.2.1",
-    "express-rate-limit": "^8.2.1",
+    "express-rate-limit": "^8.2.2",
     "express-validator": "^7.3.1",
     "helmet": "^8.1.0",
     "isomorphic-dompurify": "^2.35.0",
