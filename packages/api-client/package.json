@@ -25,7 +25,7 @@
     "@rent-a-wheel/typescript-config": "workspace:*",
     "@rent-a-wheel/api-spec": "workspace:*",
     "@tanstack/react-query": "^5.90.20",
-    "axios": "^1.13.4",
+    "axios": "^1.15.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
